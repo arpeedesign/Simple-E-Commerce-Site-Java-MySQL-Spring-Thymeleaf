@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User / Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Add User / Register</h2>
+    <hr/>
+    <form th:action="@{/saveUser}" th:object="${user}" method="POST">
+        <label>First Name</label>
+        <input type="text" th:field="*{userFirstName}" placeholder="Enter first name" class="form-control col-4 mb-4"/>
+        <label>Last Name</label>
+        <input type="text" th:field="*{userLastName}" placeholder="Enter last name" class="form-control col-4 mb-4"/>
+        <label>Email</label>
+        <input type="text" th:field="*{userEmail}" placeholder="Enter email address" class="form-control col-4 mb-4"/>
+        <label>Password</label>
+        <input type="text" th:field="*{userPassword}" placeholder="Enter password" class="form-control col-4 mb-4"/>
+        <input type="hidden" th:field="*{userId}"/>
+        <label>Gender</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="F" th:field="*{userGender}">
+                <label class="form-check-label" for="inlineRadio1">F</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="M" th:field="*{userGender}">
+                <label class="form-check-label" for="inlineRadio2">M</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="X" th:field="*{userGender}">
+                <label class="form-check-label" for="inlineRadio3">X</label>
+            </div>
+        <hr>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+    <hr/>
+    <a th:href="@{/userlist}">Back to list</a>
+</div>
+</body>
+</html>
