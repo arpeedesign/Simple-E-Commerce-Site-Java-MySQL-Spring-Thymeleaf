@@ -7,4 +7,5 @@ import java.io.IOException;
 
 public interface ExcelImporterService {
     ResponseEntity importExcelFile(MultipartFile file) throws IOException;
+    void saveExcel(MultipartFile file);
 }
