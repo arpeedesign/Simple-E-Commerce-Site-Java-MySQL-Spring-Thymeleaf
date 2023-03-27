@@ -16,7 +16,9 @@
 <div class="container">
   <h2>Product List</h2>
   <hr/>
-  <a th:href="@{addProductForm}" class="btn btn-info mb-2">Add Product Single or Bulk</a>
+  <p>You can add products to the list by clicking on one of the following options.</p>
+  <a th:href="@{addProductForm}" class="btn btn-info mb-2">Add Single Product</a>
+  <a th:href="@{addBulkProductForm}" class="btn btn-info mb-2">Add Bulk Product</a>
   <table class="table table-bordered table-striped" id="productTable">
     <thead>
     <tr>
