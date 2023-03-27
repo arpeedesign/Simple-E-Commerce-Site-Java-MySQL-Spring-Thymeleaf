@@ -5,30 +5,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="dashboard")//SQL table name
+@Table(name="dashboard_data")//SQL table name
 @Entity
-public class Dashboard {
+public class DashboardData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "dashboard_Id")
     private long dashboardId;
     @Column(name = "sales_date")
-    private String salesDate;
+    private LocalDate salesDate;
     @Column(name = "sold_product_name")
     private String soldProductName;
     @Column(name = "sold_product_type")
     private String soldProductType;
     @Column(name = "sold_product_price")
-    private int soldProductPrice;
+    private Double soldProductPrice;
     @Column(name = "sold_product_cog")
-    private int soldProductCog;
+    private Double soldProductCog;
     @Column(name = "sold_product_vat")
-    private int soldProductVat;
+    private Double soldProductVat;
     @Column(name = "sold_product_pieces")
-    private int soldProductPieces;
+    private Double soldProductPieces;
     @Column(name = "sold_product_country")
     private String soldProductCountry;
 

@@ -25,11 +25,6 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-/*    @Override
-    public void saveUser(User user) {
-        this.user = user;
-        userRepository.save(user);
-    }*/
     @Override
     public User findID(Long userId) {
         return userRepository.findById(userId).get();
@@ -38,7 +33,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
-
     @Override
     public ResponseEntity<?> saveUser(User user) {
         if (userRepository.existsByUserEmail(user.getUserEmail())) {

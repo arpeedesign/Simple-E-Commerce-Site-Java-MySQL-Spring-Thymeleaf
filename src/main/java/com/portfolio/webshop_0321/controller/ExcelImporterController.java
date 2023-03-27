@@ -28,6 +28,12 @@ public class ExcelImporterController {
     @PostMapping("/import-data-excel")
     public ModelAndView importExcelDataFile(@RequestParam("file") MultipartFile file) throws IOException {
         ModelAndView mav = new ModelAndView("redirect:/dashboard");
+        excelImporterService.saveExcel(file);
+        System.out.println("Saved: "+file.getOriginalFilename());
+        excelImporterService.importExcelDataFile(file);
+        System.out.println("Added: "+file.getOriginalFilename());
+        excelImporterService.deleteExcel(file);
+        System.out.println("Deleted: "+file.getOriginalFilename());
         return mav;
     }
 
