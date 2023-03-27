@@ -21,7 +21,7 @@ public class ExcelImporterController {
         System.out.println("Added: "+file.getName());
         excelImporterService.deleteExcel(file);
         System.out.println("Deleted: "+file.getName());
-        return "Done";
+        return "Done with it";
     }
 
 }
