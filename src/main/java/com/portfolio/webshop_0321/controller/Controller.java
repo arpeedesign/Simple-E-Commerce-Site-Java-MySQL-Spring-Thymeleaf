@@ -19,5 +19,10 @@ public class Controller {
        ModelAndView mav = new ModelAndView("home");
        return mav;
     }
+    @GetMapping("/dashboard")
+    public ModelAndView dashboard() {
+        ModelAndView mav = new ModelAndView("dashboard");
+        return mav;
+    }
 
 }

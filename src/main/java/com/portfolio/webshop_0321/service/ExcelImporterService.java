@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public interface ExcelImporterService {
-    ResponseEntity importExcelFile(MultipartFile file) throws IOException;
+    ResponseEntity importExcelProductFile(MultipartFile file) throws IOException;
     void saveExcel(MultipartFile file);
     InputStream deleteExcel(MultipartFile file) throws IOException;
 }

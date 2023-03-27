@@ -28,7 +28,7 @@ public class ExcelImporterServiceImpl implements ExcelImporterService {
     private final Path root = Paths.get("./src/main/resources/");
 
     @Override
-    public ResponseEntity importExcelFile(MultipartFile file) throws IOException {
+    public ResponseEntity importExcelProductFile(MultipartFile file) throws IOException {
         HttpStatus status = HttpStatus.OK;
         List<Product> productList = new ArrayList<>();
         XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
