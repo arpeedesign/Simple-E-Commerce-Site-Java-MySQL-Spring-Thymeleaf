@@ -27,6 +27,13 @@ public class ProductController {
         mav.addObject("product", newProduct);
         return mav;
     }
+    @GetMapping("/addBulkProductForm")
+    public ModelAndView addBulkProductForm() {
+        ModelAndView mav = new ModelAndView("add-bulk-product-form");
+        Product newProduct = new Product();
+        mav.addObject("product", newProduct);
+        return mav;
+    }
 
     @PostMapping("/saveProduct")
     public ModelAndView saveProduct(Product product) {

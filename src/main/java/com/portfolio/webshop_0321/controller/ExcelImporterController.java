@@ -1,10 +1,12 @@
 package com.portfolio.webshop_0321.controller;
 
+import com.portfolio.webshop_0321.entity.Product;
 import com.portfolio.webshop_0321.service.ExcelImporterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -14,14 +16,15 @@ public class ExcelImporterController {
     ExcelImporterService excelImporterService;
 
     @PostMapping("/import-excel")
-    public String importExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public ModelAndView importExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
+        ModelAndView mav = new ModelAndView("redirect:/list");
         excelImporterService.saveExcel(file);
         System.out.println("Saved: "+file.getOriginalFilename());
         excelImporterService.importExcelFile(file);
-        System.out.println("Added: "+file.getName());
+        System.out.println("Added: "+file.getOriginalFilename());
         excelImporterService.deleteExcel(file);
-        System.out.println("Deleted: "+file.getName());
-        return "Done with it";
+        System.out.println("Deleted: "+file.getOriginalFilename());
+        return mav;
     }
 
 }
