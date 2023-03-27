@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExcelImporterServiceImpl implements ExcelImporterService{
+public class ExcelImporterServiceImpl implements ExcelImporterService {
     @Autowired
     ProductService productService;
     private final Path root = Paths.get("./src/main/resources/");
@@ -56,22 +58,16 @@ public class ExcelImporterServiceImpl implements ExcelImporterService{
         }
     }
 
-       /*
-    public ResponseEntity<List<Product>> importExcelFile(@RequestParam("file") MultipartFile files) throws IOException {
-        HttpStatus status = HttpStatus.OK;
-        List<Product> productList = new ArrayList<>();
-        XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
-        XSSFSheet worksheet = workbook.getSheetAt(0);
-        for (int index = 1; index < worksheet.getPhysicalNumberOfRows(); index++) {
-            if (index > 0) {
-                Product product = new Product();
-                XSSFRow row = worksheet.getRow(index);
-                product.setProductName(row.getCell(0).getStringCellValue());
-                product.setProductType(row.getCell(1).getStringCellValue());
-                productList.add(product);
-                productService.saveProduct(product);
+    @Override
+    public InputStream deleteExcel(MultipartFile file) throws IOException {
+        try {
+            Files.delete(this.root.resolve(file.getOriginalFilename()));
+        } catch (Exception e) {
+            if (e instanceof FileNotFoundException) {
+                throw new RuntimeException("A file of that name does not exists.");
             }
+            throw new RuntimeException(e.getMessage());
         }
-        return new ResponseEntity<>(productList, status);
-    }*/
+        return null;
+    }
 }

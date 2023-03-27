@@ -16,9 +16,11 @@ public class ExcelImporterController {
     @PostMapping("/import-excel")
     public String importExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
         excelImporterService.saveExcel(file);
-        System.out.println("Mentve: "+file.getOriginalFilename());
+        System.out.println("Saved: "+file.getOriginalFilename());
         excelImporterService.importExcelFile(file);
-        System.out.println("Hozzáadva: "+file.getName());
+        System.out.println("Added: "+file.getName());
+        excelImporterService.deleteExcel(file);
+        System.out.println("Deleted: "+file.getName());
         return "Done";
     }
 
