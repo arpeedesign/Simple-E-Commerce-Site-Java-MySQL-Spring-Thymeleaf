@@ -29,8 +29,16 @@ public class DashboardController {
         return dashboardDataService.findAllDashboardData();
     }
     @GetMapping("/lifeTimeSales")
-    public double lifeTimeSales() {
-        return dashboardDataService.lifeTimeSales();
+    public Double lifeTimeSales() {
+        Double totalSales=dashboardDataService.lifeTimeSales();
+        return totalSales;
     }
+    @GetMapping("/lifeTimeProfit")
+    public int lifeTimeProfit() {
+        Double totalProfit=dashboardDataService.lifeTimeProfit();
+        return totalProfit.intValue();
+    }
+
+
 
 }

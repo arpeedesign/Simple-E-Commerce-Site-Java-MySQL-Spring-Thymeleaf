@@ -24,15 +24,22 @@ public class DashboardDataServiceImlp implements DashboardDataService {
         return dashboardRepository.findAllDashboardData();
     }
 
+    // Total Sale
     @Override
     public double lifeTimeSales() {
         return dashboardRepository.lifeTimeSales();
     }
+    //Total profit
+    @Override
+    public Double lifeTimeProfit() {
+        return dashboardRepository.lifeTimeProfit();
+    }
 
 
-    // Total Sale
+
     // Today Sale
     //Find 2023.03.27 in sales_sale and sum (sold_product_pieces * sold_product_price) give data to HTML
+
     // Today profit
-    //Total profit
+
 }

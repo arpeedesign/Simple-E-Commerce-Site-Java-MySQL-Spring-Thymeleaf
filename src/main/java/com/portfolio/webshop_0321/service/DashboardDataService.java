@@ -12,4 +12,6 @@ public interface DashboardDataService {
 
 
     double lifeTimeSales();
+
+    Double lifeTimeProfit();
 }

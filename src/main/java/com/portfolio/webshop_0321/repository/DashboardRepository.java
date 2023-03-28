@@ -17,5 +17,6 @@ public interface DashboardRepository extends CrudRepository<DashboardData, Long>
     @Query(value = "SELECT SUM(sold_product_pieces*sold_product_price) FROM dashboard_data", nativeQuery = true)
     double lifeTimeSales();
 
-
+    @Query(value = "SELECT SUM(sold_product_pieces*(sold_product_price-sold_product_cog)) FROM dashboard_data", nativeQuery = true)
+    Double lifeTimeProfit();
 }

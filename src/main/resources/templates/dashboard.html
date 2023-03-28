@@ -200,7 +200,13 @@
                          Upload
                      </button>
                  </div>
+
              </div>
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <button th:action="@{/lifeTimeSales}" class="btn btn-sm btn-primary" type="submit">Refresh data</button>
+                </div>
+            </div>
              <!-- Upload Button-->
 
             <!-- Sale & Revenue Start UPPER 4 segment-->
@@ -211,7 +217,7 @@
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0" th:each="product: ${products}" th:text="${product.productName}">$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <h6 class="mb-0" >$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
@@ -220,7 +226,7 @@
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0" >$O</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <h6 class="mb-0" > <span th:int="${totalSales}"> $O </span></h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
@@ -229,7 +235,7 @@
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Today Profit</p>
-                                <h6 class="mb-0">$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <h6 class="mb-0" >$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
