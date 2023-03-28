@@ -35,6 +35,15 @@ public class DashboardDataServiceImlp implements DashboardDataService {
         return dashboardRepository.lifeTimeProfit();
     }
 
+    @Override
+    public Double todaySales() {
+        return dashboardRepository.todaySales();
+    }
+
+    @Override
+    public Double todayProfit() {
+        return dashboardRepository.todayProfit();
+    }
 
 
     // Today Sale

@@ -38,7 +38,15 @@ public class DashboardController {
         Double totalProfit=dashboardDataService.lifeTimeProfit();
         return totalProfit.intValue();
     }
-
-
+    @GetMapping("/todaySales")
+    public int todaySales() {
+        Double todaySales=dashboardDataService.todaySales();
+        return todaySales.intValue();
+    }
+    @GetMapping("/todayProfit")
+    public int todayProfit() {
+        Double todayProfit=dashboardDataService.todayProfit();
+        return todayProfit.intValue();
+    }
 
 }
