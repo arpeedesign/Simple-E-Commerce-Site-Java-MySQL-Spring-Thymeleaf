@@ -38,7 +38,18 @@ public class DashboardController {
         model.addAttribute("totalProfit", totalProfitInt);
         return mav;
     }
-
+    @GetMapping("/selectedDayData")
+    public ModelAndView selectedDayData(@RequestParam String date) {
+        LocalDate selectedDay = LocalDate.parse(date);
+        Double selectedDayProfit=dashboardDataService.selectedDayProfit(selectedDay);
+        int selectedDayProfitInt = selectedDayProfit.intValue();
+        Double selectedDaySales=dashboardDataService.selectedDaySales(selectedDay);
+        int selectedDaySalesInt = selectedDaySales.intValue();
+        ModelAndView mav = new ModelAndView("dashboard");
+        mav.getModel().put("selectedDayProfit",selectedDayProfitInt);
+        mav.getModel().put("selectedDaySales",selectedDaySalesInt);
+        return mav;
+    }
     @GetMapping("/selectedDaySales")
     public ModelAndView selectedDaySales(@RequestParam String date) {
         LocalDate selectedDay = LocalDate.parse(date);
