@@ -210,7 +210,7 @@
                             <form
                                     id="refresh"
                                     method="GET"
-                                    th:action="@{/selectedDaySales}">
+                                    th:action="@{/dashboard}">
                                     <input  id="date"
                                             name="date"
                                             type="date"
@@ -232,8 +232,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0" >$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <p class="mb-2">Selected day Sale</p>
+                                <h6 class="mb-0" th:text="'$' + ${selectedDaySales}">$ 1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
@@ -242,7 +242,7 @@
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0" > <span th:int="${totalSales}"> $O </span></h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <h6 class="mb-0" th:text="'$' + ${totalSales}"> $O </h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
@@ -250,8 +250,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Profit</p>
-                                <h6 class="mb-0" >$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <p class="mb-2">Selected day Profit</p>
+                                <h6 class="mb-0"th:text="'$' + ${selectedDayProfit}">$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total Profit</p>
-                                <h6 class="mb-0">$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
+                                <h6 class="mb-0" th:text="'$ ' + ${totalProfit}">$1234</h6> <!-- DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!! DATA INSERT HERE!!!!-->
                             </div>
                         </div>
                     </div>
