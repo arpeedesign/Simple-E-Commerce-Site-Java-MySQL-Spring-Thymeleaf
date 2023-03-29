@@ -50,6 +50,11 @@ public class DashboardDataServiceImlp implements DashboardDataService {
         return dashboardRepository.selectedDaySales(date);
     }
 
+    @Override
+    public Double selectedDayProfit(LocalDate date) {
+        return dashboardRepository.selectedDayProfit(date);
+    }
+
     // Today Sale
     //Find 2023.03.27 in sales_sale and sum (sold_product_pieces * sold_product_price) give data to HTML
 

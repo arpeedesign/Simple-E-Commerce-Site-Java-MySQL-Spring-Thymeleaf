@@ -41,6 +41,12 @@ public class DashboardController {
         Double selectedDaySales=dashboardDataService.selectedDaySales(selectedDay);
         return selectedDaySales.intValue();
     }
+    @GetMapping("/selectedDayProfit") // /todaySalesJPQL?date=2023-03-10
+    public int selectedDayProfit(@RequestParam(required = true) String date) {
+        LocalDate selectedDay = LocalDate.parse(date);
+        Double selectedDayProfit=dashboardDataService.selectedDayProfit(selectedDay);
+        return selectedDayProfit.intValue();
+    }
     @GetMapping("/lifeTimeProfit")
     public int lifeTimeProfit() {
         Double totalProfit=dashboardDataService.lifeTimeProfit();

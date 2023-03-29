@@ -21,11 +21,11 @@ public interface DashboardRepository extends CrudRepository<DashboardData, Long>
     @Query(value = "SELECT SUM(sold_product_pieces*(sold_product_price-sold_product_cog)) FROM dashboard_data", nativeQuery = true)
     Double lifeTimeProfit();
     @Query(value = "SELECT SUM(sold_product_pieces*sold_product_price) FROM dashboard_data where sales_date='2023-03-10'", nativeQuery = true)
-    //Select sales_date, sum(sold_product_pieces*sold_product_price) from dashboard_data where sales_date='2023-03-10';
     Double todaySales();
     @Query(value = "SELECT SUM(sold_product_pieces*(sold_product_price-sold_product_cog)) FROM dashboard_data where sales_date='2023-03-10'", nativeQuery = true)
-        //Select sales_date, sum(sold_product_pieces*sold_product_price) from dashboard_data where sales_date='2023-03-10';
     Double todayProfit();
     @Query(value = "SELECT SUM(sold_product_pieces*sold_product_price) FROM dashboard_data x where x.sales_date=?1", nativeQuery = true)
     Double selectedDaySales(LocalDate date);
+    @Query(value = "SELECT SUM(sold_product_pieces*(sold_product_price-sold_product_cog)) FROM dashboard_data x where x.sales_date=?1", nativeQuery = true)
+    Double selectedDayProfit(LocalDate date);
 }

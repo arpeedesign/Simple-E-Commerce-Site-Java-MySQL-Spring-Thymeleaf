@@ -22,4 +22,5 @@ public interface DashboardDataService {
 
     Double selectedDaySales(LocalDate date);
 
+    Double selectedDayProfit(LocalDate date);
 }
