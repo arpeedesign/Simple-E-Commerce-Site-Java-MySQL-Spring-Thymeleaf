@@ -5,9 +5,11 @@ import com.portfolio.webshop_0321.service.DashboardDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -29,9 +31,15 @@ public class DashboardController {
         return dashboardDataService.findAllDashboardData();
     }
     @GetMapping("/lifeTimeSales")
-    public Double lifeTimeSales() {
+    public int lifeTimeSales() {
         Double totalSales=dashboardDataService.lifeTimeSales();
-        return totalSales;
+        return totalSales.intValue();
+    }
+    @GetMapping("/selectedDaySales") // /todaySalesJPQL?date=2023-03-10
+    public int selectedDaySales(@RequestParam(required = true) String date) {
+        LocalDate selectedDay = LocalDate.parse(date);
+        Double selectedDaySales=dashboardDataService.selectedDaySales(selectedDay);
+        return selectedDaySales.intValue();
     }
     @GetMapping("/lifeTimeProfit")
     public int lifeTimeProfit() {

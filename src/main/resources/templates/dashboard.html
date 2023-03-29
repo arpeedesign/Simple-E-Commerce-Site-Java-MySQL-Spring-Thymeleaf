@@ -184,30 +184,46 @@
 
             <!-- Upload Button-->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <h6 class="mb-0">Upload Sales Data</h6>
-                    <form
-                            id="uploadForm"
-                            method="post"
-                            th:action="@{/import-data-excel}"
-                            th:object="${file}"
-                            enctype="multipart/form-data">
-                        <input id="input-file"
-                               type="file"
-                               name="file"/>
-                     </form>
-                     <button class="btn btn-sm btn-primary" type="submit"  form="uploadForm">
-                         Upload
+                <div class="row g-2">
+                    <div class="col-sm-6">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <h6 class="mb-0">Upload Sales Data</h6>
+                            <form
+                                    id="uploadForm"
+                                    method="post"
+                                    th:action="@{/import-data-excel}"
+                                    th:object="${file}"
+                                    enctype="multipart/form-data">
+                                <input id="input-file"
+                                       type="file"
+                                       name="file"/>
+                             </form>
+                             <button class="btn btn-sm btn-primary" type="submit"  form="uploadForm">
+                                 Upload
+                             </button>
+                        </div>
+                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <h6 class="mb-0">Select Date</h6>
+                            <form
+                                    id="refresh"
+                                    method="GET"
+                                    th:action="@{/selectedDaySales}">
+                                    <input  id="date"
+                                            name="date"
+                                            type="date"
+                                />
+                            </form>
+                     <button  class="btn btn-sm btn-primary" type="submit"  form="refresh">
+                         Refresh data
                      </button>
                  </div>
-
              </div>
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <button th:action="@{/lifeTimeSales}" class="btn btn-sm btn-primary" type="submit">Refresh data</button>
-                </div>
-            </div>
-             <!-- Upload Button-->
+         </div>
+     </div>
+      <!-- Upload Button-->
 
             <!-- Sale & Revenue Start UPPER 4 segment-->
             <div class="container-fluid pt-4 px-4">
