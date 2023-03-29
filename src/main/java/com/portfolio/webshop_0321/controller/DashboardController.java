@@ -27,85 +27,88 @@ public class DashboardController {
         mav.addObject("dashboardData", newDashboardData);
         return new ModelAndView("redirect:/dashboard");
     }
+
+    /*
     @GetMapping("/dashboard")
     public ModelAndView dashboard(Model model) {
         ModelAndView mav = new ModelAndView("dashboard");
-        Double totalSales=dashboardDataService.lifeTimeSales();
+        Double totalSales = dashboardDataService.lifeTimeSales();
         int totalSalesInt = totalSales.intValue();
         model.addAttribute("totalSales", totalSalesInt);
-        Double totalProfit=dashboardDataService.lifeTimeProfit();
+        Double totalProfit = dashboardDataService.lifeTimeProfit();
         int totalProfitInt = totalProfit.intValue();
         model.addAttribute("totalProfit", totalProfitInt);
         return mav;
     }
-    @GetMapping("/selectedDayData")
+*/
+    @GetMapping("/dashboard")
     public ModelAndView selectedDayData(@RequestParam(required = false) String date) {
-        LocalDate selectedDay = LocalDate.parse(date);
-        Double selectedDayProfit=dashboardDataService.selectedDayProfit(selectedDay);
-        int selectedDayProfitInt = selectedDayProfit.intValue();
-        Double selectedDaySales=dashboardDataService.selectedDaySales(selectedDay);
-        int selectedDaySalesInt = selectedDaySales.intValue();
         ModelAndView mav = new ModelAndView("dashboard");
-        mav.getModel().put("selectedDayProfit",selectedDayProfitInt);
-        mav.getModel().put("selectedDaySales",selectedDaySalesInt);
-
-        Double totalSales=dashboardDataService.lifeTimeSales();
-        int totalSalesInt = totalSales.intValue();
-        mav.getModel().put("totalSales", totalSalesInt);
-        Double totalProfit=dashboardDataService.lifeTimeProfit();
-        int totalProfitInt = totalProfit.intValue();
-        mav.getModel().put("totalProfit", totalProfitInt);
+        if (date == null || "".equals(date)) {
+            date = LocalDate.now().toString();
+            String today = LocalDate.now().toString();
+            mav.getModel().put("today", today);
+        }
+        mav.getModel().put("today", date);
+        mav.getModel().put("totalSales", dashboardDataService.lifeTimeSales().intValue());
+        mav.getModel().put("totalProfit", dashboardDataService.lifeTimeProfit().intValue());
+        LocalDate selectedDay = LocalDate.parse(date);
+        mav.getModel().put("selectedDayProfit", dashboardDataService.selectedDayProfit(selectedDay));
+        mav.getModel().put("selectedDaySales", dashboardDataService.selectedDaySales(selectedDay));
         return mav;
     }
+
     @GetMapping("/selectedDaySales")
     public ModelAndView selectedDaySales(@RequestParam String date) {
         LocalDate selectedDay = LocalDate.parse(date);
-        Double selectedDaySales=dashboardDataService.selectedDaySales(selectedDay);
-        int selectedDaySalesInt = selectedDaySales.intValue();
+        int selectedDaySales = dashboardDataService.selectedDaySales(selectedDay);
         ModelAndView mav = new ModelAndView("dashboard");
-        mav.getModel().put("selectedDaySales",selectedDaySalesInt);
+        mav.getModel().put("selectedDaySales", selectedDaySales);
         return mav;
     }
+
     @GetMapping("/selectedDayProfit")
     public ModelAndView selectedDayProfit(@RequestParam String date) {
         LocalDate selectedDay = LocalDate.parse(date);
-        Double selectedDayProfit=dashboardDataService.selectedDayProfit(selectedDay);
-        int selectedDayProfitInt = selectedDayProfit.intValue();
+        int selectedDayProfit = dashboardDataService.selectedDayProfit(selectedDay);
         ModelAndView mav = new ModelAndView("dashboard");
-        mav.getModel().put("selectedDayProfit",selectedDayProfitInt);
+        mav.getModel().put("selectedDayProfit", selectedDayProfit);
         return mav;
     }
+
     @GetMapping("/findAllDashboardData")
-    public List <DashboardData> findAllDashboardData() {
+    public List<DashboardData> findAllDashboardData() {
         return dashboardDataService.findAllDashboardData();
     }
+
     @GetMapping("/lifeTimeSales")
     public ModelAndView lifeTimeSales(Model model) {
-        Double totalSales=dashboardDataService.lifeTimeSales();
+        Double totalSales = dashboardDataService.lifeTimeSales();
         int totalSalesInt = totalSales.intValue();
         model.addAttribute("totalSales", totalSalesInt);
         ModelAndView mav = new ModelAndView("lifeTimeSales");
         return mav;
     }
+
     @GetMapping("/lifeTimeProfit")
     public ModelAndView lifeTimeProfit(Model model) {
-        Double totalProfit=dashboardDataService.lifeTimeProfit();
+        Double totalProfit = dashboardDataService.lifeTimeProfit();
         int totalProfitInt = totalProfit.intValue();
         model.addAttribute("totalProfit", totalProfitInt);
         ModelAndView mav = new ModelAndView("lifeTimeSales");
         return mav;
     }
-
 
 
     @GetMapping("/todaySales")
     public int todaySales() {
-        Double todaySales=dashboardDataService.todaySales();
+        Double todaySales = dashboardDataService.todaySales();
         return todaySales.intValue();
     }
+
     @GetMapping("/todayProfit")
     public int todayProfit() {
-        Double todayProfit=dashboardDataService.todayProfit();
+        Double todayProfit = dashboardDataService.todayProfit();
         return todayProfit.intValue();
     }
 

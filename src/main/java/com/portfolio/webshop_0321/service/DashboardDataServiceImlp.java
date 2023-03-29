@@ -26,7 +26,7 @@ public class DashboardDataServiceImlp implements DashboardDataService {
 
     // Total Sale
     @Override
-    public double lifeTimeSales() {
+    public Double lifeTimeSales() {
         return dashboardRepository.lifeTimeSales();
     }
     //Total profit
@@ -46,13 +46,19 @@ public class DashboardDataServiceImlp implements DashboardDataService {
     }
 
     @Override
-    public Double selectedDaySales(LocalDate date) {
-        return dashboardRepository.selectedDaySales(date);
+    public int selectedDaySales(LocalDate date) {
+        if(dashboardRepository.selectedDaySales(date) == null){
+            return 0;
+        }
+        return dashboardRepository.selectedDaySales(date).intValue();
     }
 
     @Override
-    public Double selectedDayProfit(LocalDate date) {
-        return dashboardRepository.selectedDayProfit(date);
+    public int selectedDayProfit(LocalDate date) {
+        if(dashboardRepository.selectedDayProfit(date) == null){
+            return 0;
+        }
+        return dashboardRepository.selectedDayProfit(date).intValue();
     }
 
     // Today Sale

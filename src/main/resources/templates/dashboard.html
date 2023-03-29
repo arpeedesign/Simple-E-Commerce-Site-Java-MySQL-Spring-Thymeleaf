@@ -210,10 +210,11 @@
                             <form
                                     id="refresh"
                                     method="GET"
-                                    th:action="@{/selectedDayData}">
+                                    th:action="@{/dashboard}">
                                     <input  id="date"
                                             name="date"
                                             type="date"
+                                            th:value="${today}"
                                 />
                             </form>
                      <button  class="btn btn-sm btn-primary" type="submit"  form="refresh">

@@ -12,7 +12,7 @@ public interface DashboardDataService {
      List<DashboardData> findAllDashboardData();
 
 
-    double lifeTimeSales();
+    Double lifeTimeSales();
 
     Double lifeTimeProfit();
 
@@ -20,7 +20,7 @@ public interface DashboardDataService {
 
     Double todayProfit();
 
-    Double selectedDaySales(LocalDate date);
+    int selectedDaySales(LocalDate date);
 
-    Double selectedDayProfit(LocalDate date);
+    int selectedDayProfit(LocalDate date);
 }

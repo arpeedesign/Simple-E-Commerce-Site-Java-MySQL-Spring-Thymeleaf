@@ -20,12 +20,4 @@ public class Controller {
        ModelAndView mav = new ModelAndView("home");
        return mav;
     }
-
-    @GetMapping("/hello")
-    public ModelAndView hello(Model model) {
-        model.addAttribute("message","Ez egy teszt szöveg");
-        ModelAndView mav = new ModelAndView("hello");
-        return mav;
-    }
-
 }
