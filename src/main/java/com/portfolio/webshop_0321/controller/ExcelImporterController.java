@@ -17,11 +17,8 @@ public class ExcelImporterController {
     public ModelAndView importExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
         ModelAndView mav = new ModelAndView("redirect:/list");
         excelImporterService.saveExcel(file);
-        System.out.println("Saved: "+file.getOriginalFilename());
         excelImporterService.importExcelProductFile(file);
-        System.out.println("Added: "+file.getOriginalFilename());
         excelImporterService.deleteExcel(file);
-        System.out.println("Deleted: "+file.getOriginalFilename());
         return mav;
     }
 
@@ -29,11 +26,8 @@ public class ExcelImporterController {
     public ModelAndView importExcelDataFile(@RequestParam("file") MultipartFile file) throws IOException {
         ModelAndView mav = new ModelAndView("redirect:/dashboard");
         excelImporterService.saveExcel(file);
-        System.out.println("Saved: "+file.getOriginalFilename());
         excelImporterService.importExcelDataFile(file);
-        System.out.println("Added: "+file.getOriginalFilename());
         excelImporterService.deleteExcel(file);
-        System.out.println("Deleted: "+file.getOriginalFilename());
         return mav;
     }
 

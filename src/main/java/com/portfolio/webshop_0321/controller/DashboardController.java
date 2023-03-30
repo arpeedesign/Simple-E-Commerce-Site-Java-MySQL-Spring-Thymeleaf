@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 public class DashboardController {
+    private static final String DASHBOARD = "dashboard";
     @Autowired
     DashboardDataService dashboardDataService;
 
@@ -28,22 +29,9 @@ public class DashboardController {
         return new ModelAndView("redirect:/dashboard");
     }
 
-    /*
-    @GetMapping("/dashboard")
-    public ModelAndView dashboard(Model model) {
-        ModelAndView mav = new ModelAndView("dashboard");
-        Double totalSales = dashboardDataService.lifeTimeSales();
-        int totalSalesInt = totalSales.intValue();
-        model.addAttribute("totalSales", totalSalesInt);
-        Double totalProfit = dashboardDataService.lifeTimeProfit();
-        int totalProfitInt = totalProfit.intValue();
-        model.addAttribute("totalProfit", totalProfitInt);
-        return mav;
-    }
-*/
     @GetMapping("/dashboard")
     public ModelAndView selectedDayData(@RequestParam(required = false) String date) {
-        ModelAndView mav = new ModelAndView("dashboard");
+        ModelAndView mav = new ModelAndView(DASHBOARD);
         if (date == null || "".equals(date)) {
             date = LocalDate.now().toString();
             String today = LocalDate.now().toString();
@@ -62,7 +50,7 @@ public class DashboardController {
     public ModelAndView selectedDaySales(@RequestParam String date) {
         LocalDate selectedDay = LocalDate.parse(date);
         int selectedDaySales = dashboardDataService.selectedDaySales(selectedDay);
-        ModelAndView mav = new ModelAndView("dashboard");
+        ModelAndView mav = new ModelAndView(DASHBOARD);
         mav.getModel().put("selectedDaySales", selectedDaySales);
         return mav;
     }
@@ -71,7 +59,7 @@ public class DashboardController {
     public ModelAndView selectedDayProfit(@RequestParam String date) {
         LocalDate selectedDay = LocalDate.parse(date);
         int selectedDayProfit = dashboardDataService.selectedDayProfit(selectedDay);
-        ModelAndView mav = new ModelAndView("dashboard");
+        ModelAndView mav = new ModelAndView(DASHBOARD);
         mav.getModel().put("selectedDayProfit", selectedDayProfit);
         return mav;
     }
@@ -86,8 +74,7 @@ public class DashboardController {
         Double totalSales = dashboardDataService.lifeTimeSales();
         int totalSalesInt = totalSales.intValue();
         model.addAttribute("totalSales", totalSalesInt);
-        ModelAndView mav = new ModelAndView("lifeTimeSales");
-        return mav;
+        return new ModelAndView("lifeTimeSales");
     }
 
     @GetMapping("/lifeTimeProfit")
@@ -95,8 +82,7 @@ public class DashboardController {
         Double totalProfit = dashboardDataService.lifeTimeProfit();
         int totalProfitInt = totalProfit.intValue();
         model.addAttribute("totalProfit", totalProfitInt);
-        ModelAndView mav = new ModelAndView("lifeTimeSales");
-        return mav;
+        return new ModelAndView("lifeTimeSales");
     }
 
 
