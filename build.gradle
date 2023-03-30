@@ -25,6 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.apache.poi:poi-ooxml:5.0.0'
 
+//	implementation 'org.springframework.security:spring-security-core:6.0.2'
+
 	//implementation 'io.springfox:springfox-swagger2:3.0.0'
 	//implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	//implementation 'io.springfox:springfox-core:3.0.0'

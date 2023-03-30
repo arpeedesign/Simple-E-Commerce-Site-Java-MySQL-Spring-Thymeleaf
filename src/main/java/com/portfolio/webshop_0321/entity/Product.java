@@ -18,6 +18,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
     private long productId;
+    @Column(name = "product_pic")
+    private String productPic;
+    @Column(name = "product_price", nullable=false)
+    private double productPrice;
 
     public String getProductName() {
         return productName;

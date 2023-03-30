@@ -42,6 +42,8 @@ public class ExcelImporterServiceImpl implements ExcelImporterService {
                 XSSFRow row = worksheet.getRow(index);
                 product.setProductName(row.getCell(0).getStringCellValue());
                 product.setProductType(row.getCell(1).getStringCellValue());
+                product.setProductPic(row.getCell(2).getStringCellValue());
+                product.setProductPrice(row.getCell(3).getNumericCellValue());
                 productList.add(product);
                 productService.saveProduct(product);
             }
