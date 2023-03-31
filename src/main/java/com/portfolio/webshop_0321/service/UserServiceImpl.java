@@ -1,25 +1,49 @@
 package com.portfolio.webshop_0321.service;
 
-import com.portfolio.webshop_0321.entity.ConfirmationToken;
-import com.portfolio.webshop_0321.entity.User;
+import com.portfolio.webshop_0321.dto.UserDto;
+import com.portfolio.webshop_0321.entity.*;
 import com.portfolio.webshop_0321.repository.ConfirmationTokenRepository;
+import com.portfolio.webshop_0321.repository.RoleRepository;
 import com.portfolio.webshop_0321.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    ConfirmationTokenRepository confirmationTokenRepository;
+    private ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
-    EmailService emailService;// email repository?
+    private EmailService emailService;// email repository?
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     private User user;
+
+    @Override
+    public void saveUserDto(UserDto userDto) {
+        Role role = roleRepository.findByName(TbConstants.Roles.USER);
+
+        if (role == null){
+            role = roleRepository.save(new Role(TbConstants.Roles.USER));}
+
+        User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
+                Arrays.asList(role));
+        userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByUserEmail(email);
+    }
 
     @Override
     public List<User> findAll() {

@@ -27,7 +27,7 @@ public class UserController {
         mav.addObject("user", newUser);
         return mav;
     }
-    @PostMapping({"/saveUser","/register"})
+    @PostMapping("/saveUser")
     public ModelAndView saveUser (User user) {
         userService.saveUser(user);
         return new ModelAndView("redirect:/userlist");
@@ -52,6 +52,10 @@ public class UserController {
     @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
     public ResponseEntity<?> confirmUserAccount(@RequestParam("token")String confirmationToken) {
         return userService.confirmEmail(confirmationToken);
+    }
+    @GetMapping("/")
+    public String registrationForm() {
+        return "user";
     }
 
 

@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_Id")
-    private long userId;
+    private long id;
     @Column(name = "first_name", nullable = false, length = 40)
     private String userFirstName;
     @Column(name = "last_name", nullable = false, length = 40)
@@ -29,6 +32,19 @@ public class User {
     private Boolean isEnabled;
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_Id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
+    private List<Role> roles = new ArrayList<>();
+    public User(String name, String email, String password, List<Role> roles) {
+        this.userFirstName = name;
+        this.userEmail = email;
+        this.userPassword = password;
+        this.roles = roles;
     }
 
 }
