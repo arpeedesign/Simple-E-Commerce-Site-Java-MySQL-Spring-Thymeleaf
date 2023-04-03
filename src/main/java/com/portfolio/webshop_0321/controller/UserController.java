@@ -53,7 +53,7 @@ public class UserController {
     public ResponseEntity<?> confirmUserAccount(@RequestParam("token")String confirmationToken) {
         return userService.confirmEmail(confirmationToken);
     }
-    @GetMapping("/")
+    @GetMapping("/user/")
     public String registrationForm() {
         return "user";
     }

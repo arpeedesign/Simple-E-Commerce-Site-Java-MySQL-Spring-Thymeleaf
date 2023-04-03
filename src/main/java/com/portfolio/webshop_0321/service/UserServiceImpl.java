@@ -29,22 +29,9 @@ public class UserServiceImpl implements UserService {
     private User user;
 
     @Override
-    public void saveUserDto(UserDto userDto) {
-        Role role = roleRepository.findByName(TbConstants.Roles.USER);
-
-        if (role == null){
-            role = roleRepository.save(new Role(TbConstants.Roles.USER));}
-
-        User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
-                Arrays.asList(role));
-        userRepository.save(user);
-    }
-
-    @Override
     public User findUserByEmail(String email) {
         return userRepository.findByUserEmail(email);
     }
-
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -56,6 +43,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
+    }
+    @Override
+    public void saveUserDto(UserDto userDto) {
+        Role role = roleRepository.findByName(TbConstants.Roles.USER);
+
+        if (role == null){
+            role = roleRepository.save(new Role(TbConstants.Roles.USER));}
+
+        User user = new User(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), userDto.getGender(),
+                Arrays.asList(role));
+        saveUser(user);
     }
     @Override
     public ResponseEntity<?> saveUser(User user) {

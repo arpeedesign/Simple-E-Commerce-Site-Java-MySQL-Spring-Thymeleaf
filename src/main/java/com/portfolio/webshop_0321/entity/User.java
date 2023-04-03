@@ -18,15 +18,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_Id")
     private long id;
-    @Column(name = "first_name", nullable = false, length = 40)
+    @Column(name = "first_name", nullable = true, length = 40)
     private String userFirstName;
-    @Column(name = "last_name", nullable = false, length = 40)
+    @Column(name = "last_name", nullable = true, length = 40)
     private String userLastName;
-    @Column(name = "email",nullable = false, unique = true, length = 60)
+    @Column(name = "email",nullable = true, unique = true, length = 60)
     private String userEmail;
-    @Column(name = "password",nullable = false, length = 64)
+    @Column(name = "password",nullable = true, length = 64)
     private String userPassword;
-    @Column(name = "gender",nullable = false, length = 1)
+    @Column(name = "gender", length = 1)
     private String userGender;
     @Column(name = "is_enabled")
     private Boolean isEnabled;
@@ -40,10 +40,12 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
     private List<Role> roles = new ArrayList<>();
-    public User(String name, String email, String password, List<Role> roles) {
-        this.userFirstName = name;
+    public User(String firstName,String lastName, String email, String password, String gender, List<Role> roles) {
+        this.userFirstName = firstName;
+        this.userLastName = lastName;
         this.userEmail = email;
         this.userPassword = password;
+        this.userGender = gender;
         this.roles = roles;
     }
 

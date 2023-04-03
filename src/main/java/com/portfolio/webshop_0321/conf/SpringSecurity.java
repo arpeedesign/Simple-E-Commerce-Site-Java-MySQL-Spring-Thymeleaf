@@ -22,11 +22,19 @@ public class SpringSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
+
                         .requestMatchers("/registration/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/confirm-account**").permitAll()
+                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/dashboard").hasAnyRole("ADMIN")
+                        .anyRequest().permitAll()
+/*                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("**").permitAll()
+                        .requestMatchers("/home**").permitAll()
+                        .anyRequest().authenticated()*/
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

@@ -20,7 +20,7 @@
         <li class="card py-3 mb-5" th:each="product: ${products}">
             <div class="row">
                 <div class="col-4 py-0 bg-info" >
-                    <img style="position:absolute;max-height:100%;top:0;" th:src="'http://localhost:8082' + ${product.productPic}" height="250">
+                    <img style="position:absolute;max-height:100%;top:0;" th:src="${product.productPic}" height="250">
                 </div>
 
                 <div class="col-8">
