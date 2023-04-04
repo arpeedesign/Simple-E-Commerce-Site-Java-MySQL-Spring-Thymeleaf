@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title >Shopping Cart</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+  <script src="jquery-3.6.3.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2 th:text="${shoppingcartownersfirstname} + ''s Shopping Cart'">Shopping Cart</h2> <!--DATA INSERT DATA INSERT-->
+  <table class="table table-sm table-bordered table-hover table-dark" id="shoppingCartTable">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${products}">
+      <td th:text="${product.productName}"></td>
+      <td th:text="${product.productPrice}"></td>
+      <td th:text="${XXXXquantity}"></td>
+      <td>
+        <input type="number" step="1" id="updated-quantity"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+        <a th:href="@{/showUpdateForm(productId=${product.productId})}"class="btn btn-primary btn-sm">Update Quantity</a>
+        <a th:href="@{/removeProductFromCart(id=${cartitem.id})}" class="btn btn-danger btn-sm">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div align="center">
+    <h4  th:text="'Total price: $' + ${totalcartprice}">Total price: $345</h4>
+    <a align="center" th:href="@{xxxxxxx})}" class="btn btn-outline-success btn-lg">Buy</a>
+  </div>
+  <br/>
+  <a th:href="@{/home}">Back to home</a>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+			$(document).ready(function() {
+				$("#shoppingCartTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+</body>
+</html>

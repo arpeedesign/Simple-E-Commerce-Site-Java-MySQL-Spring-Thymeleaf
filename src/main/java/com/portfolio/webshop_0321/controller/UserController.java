@@ -54,9 +54,7 @@ public class UserController {
         return userService.confirmEmail(confirmationToken);
     }
     @GetMapping("/user/")
-    public String registrationForm() {
-        return "user";
+    public ModelAndView registrationForm() {
+        return new ModelAndView("user");
     }
-
-
 }

@@ -17,7 +17,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public ModelAndView loginForm() {
-        return new ModelAndView("login");
+        return new ModelAndView("login");// NEM USER KÉNE?
     }
 
     @GetMapping("/registration")

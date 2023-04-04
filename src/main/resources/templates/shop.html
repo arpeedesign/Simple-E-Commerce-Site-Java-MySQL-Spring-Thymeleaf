@@ -13,6 +13,7 @@
     <script src="jquery-3.6.3.min.js"></script>
 </head>
 <body>
+<th:block th:insert="header">Header placeholder</th:block>
 <div class="container">
 
     <ul class="list-unstyled">
@@ -37,21 +38,10 @@
                         </div>
 
                         <div class="mb-3">
-<!--                            <a class="d-inline-flex align-items-center small" href="#">
-                                <div class="text-warning mr-2">
-                                    <small class="far fa-star text-muted"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                </div>
-                                <span class="text-secondary">Secondary text</span>
-                            </a>-->
+
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover mr-1">Add to Cart</button>
+                        <button type="button" th:href="@{/addProductToCart(productId=${product.productId})}" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover mr-1 ">Add to Cart</button>
                         <button type="button" class="btn btn-sm btn-soft-secondary btn-pill transition-3d-hover">
-<!--                            <span class="far fa-heart mr-1"></span>
-                            Wishlist-->
                         </button>
                     </div>
                 </div>
@@ -61,6 +51,7 @@
     </ul>
 
 </div>
+<th:block th:insert="footer">Footer placeholder</th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 </body>
