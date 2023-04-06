@@ -16,7 +16,7 @@
   <title>Login</title>
 </head>
 <body>
-<th:block th:insert="header">Header placeholder</th:block>
+<div th:replace="fragments :: header"> Header placeholder</div>
 <div class="container">
   <div class="row mt-5">
     <div class="col-6 mx-auto">
@@ -51,7 +51,7 @@
     </div>
   </div>
 </div>
-<th:block th:insert="footer">Footer placeholder</th:block>
+<div th:replace="fragments :: footer">Footer placeholder</div>
 
 <script crossorigin="anonymous"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

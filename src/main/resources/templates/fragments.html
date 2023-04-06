@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--HEADER BASIC START-->
+<div th:fragment="header">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div id="primary-nav" class="container">
+      <a class="navbar-brand" href="home">RP's Shop</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto " >
+          <li class="nav-item active">
+            <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shopping-cart">Shopping Cart</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="login" >Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registration" >Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user/user">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<!--HEADER BASIC END-->
+<!--FOOTER START-->
+<div th:fragment="footer">
+<footer class="footer fixed-bottom " xmlns:th="http://www.thymeleaf.org">
+  <div class="bg-light">
+    <div class="row">
+      <div class="col-12 col-sm-6 text-center text-sm-start">
+        &copy; <a href="https://github.com/arpeedesign">Arpad Arnold Szabo</a>, All Right Reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+<!--FOOTER END-->
+
+</body>
+</html>

@@ -29,18 +29,18 @@
                         <div class="mb-2">
                             <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#" th:text="${product.productType}">Accessories</a>
                             <h2 class="h6 font-weight-normal">
-                                <a class="text-secondary" href="#" th:text="${product.productName}">Herschel backpack in dark blue</a>
+                                <a class="text-secondary" href="#" th:text="${product.productName}">PRODUCT NAME PLACE HOLDER</a>
                                 <span class="badge badge-success badge-pill ml-1">New arrival</span>
                             </h2>
                             <div class="d-block">
-                                <span class="h5" th:text="'$'+${product.productPrice}">$56.99</span>
+                                <span class="h5" th:text="'$'+${product.productPrice}">$99999.99</span>
                             </div>
                         </div>
 
                         <div class="mb-3">
 
                         </div>
-                        <button type="button" th:href="@{/addProductToCart(productId=${product.productId})}" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover mr-1 ">Add to Cart</button>
+                        <a type="button" th:href="@{/addProductToCart(productId=${product.productId})}" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover mr-1 ">Add to Cart</a>
                         <button type="button" class="btn btn-sm btn-soft-secondary btn-pill transition-3d-hover">
                         </button>
                     </div>

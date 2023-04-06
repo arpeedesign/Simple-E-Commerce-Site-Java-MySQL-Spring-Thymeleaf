@@ -38,8 +38,8 @@ public class DashboardController {
             mav.getModel().put("today", today);
         }
         mav.getModel().put("today", date);
-        mav.getModel().put("totalSales", dashboardDataService.lifeTimeSales().intValue());
-        mav.getModel().put("totalProfit", dashboardDataService.lifeTimeProfit().intValue());
+        mav.getModel().put("totalSales", dashboardDataService.lifeTimeSales());
+        mav.getModel().put("totalProfit", dashboardDataService.lifeTimeProfit());
         LocalDate selectedDay = LocalDate.parse(date);
         mav.getModel().put("selectedDayProfit", dashboardDataService.selectedDayProfit(selectedDay));
         mav.getModel().put("selectedDaySales", dashboardDataService.selectedDaySales(selectedDay));
@@ -71,17 +71,13 @@ public class DashboardController {
 
     @GetMapping("/lifeTimeSales")
     public ModelAndView lifeTimeSales(Model model) {
-        Double totalSales = dashboardDataService.lifeTimeSales();
-        int totalSalesInt = totalSales.intValue();
-        model.addAttribute("totalSales", totalSalesInt);
+        model.addAttribute("totalSales", dashboardDataService.lifeTimeSales());
         return new ModelAndView("lifeTimeSales");
     }
 
     @GetMapping("/lifeTimeProfit")
     public ModelAndView lifeTimeProfit(Model model) {
-        Double totalProfit = dashboardDataService.lifeTimeProfit();
-        int totalProfitInt = totalProfit.intValue();
-        model.addAttribute("totalProfit", totalProfitInt);
+        model.addAttribute("totalProfit", dashboardDataService.lifeTimeProfit());
         return new ModelAndView("lifeTimeSales");
     }
 

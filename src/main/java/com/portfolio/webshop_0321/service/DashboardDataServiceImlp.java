@@ -26,13 +26,19 @@ public class DashboardDataServiceImlp implements DashboardDataService {
 
     // Total Sale
     @Override
-    public Double lifeTimeSales() {
-        return dashboardRepository.lifeTimeSales();
+    public int lifeTimeSales() {
+        if(dashboardRepository.lifeTimeSales()== null){
+            return 0;
+        }
+        return dashboardRepository.lifeTimeSales().intValue();
     }
     //Total profit
     @Override
-    public Double lifeTimeProfit() {
-        return dashboardRepository.lifeTimeProfit();
+    public int lifeTimeProfit() {
+        if(dashboardRepository.lifeTimeProfit()==null){
+            return 0;
+        }
+        return dashboardRepository.lifeTimeProfit().intValue();
     }
 
     @Override

@@ -29,6 +29,7 @@ public class SpringSecurity {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .requestMatchers("/confirm-account**").permitAll()
                         .requestMatchers("/**").permitAll()
+                        .requestMatchers("/addProductToCart**").authenticated()
                         .requestMatchers("/dashboard").hasAnyRole("ADMIN")
                         .anyRequest().permitAll()
 /*                        .requestMatchers("/**").permitAll()

@@ -11,9 +11,9 @@ public interface DashboardDataService {
 
     List<DashboardData> findAllDashboardData();
 
-    Double lifeTimeSales();
+    int lifeTimeSales();
 
-    Double lifeTimeProfit();
+    int lifeTimeProfit();
 
     Double todaySales();
 
