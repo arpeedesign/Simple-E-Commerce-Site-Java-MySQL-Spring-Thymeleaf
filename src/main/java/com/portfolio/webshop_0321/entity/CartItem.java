@@ -22,7 +22,6 @@ public class CartItem {
     private User user;
     private int quantity;
 
-
     public long getId() {
         return id;
     }

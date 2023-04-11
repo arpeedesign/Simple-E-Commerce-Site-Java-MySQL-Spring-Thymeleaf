@@ -48,28 +48,32 @@ public class ShoppingCartController {
         return  mav;
     }
     @GetMapping("/shopping-cart")
-    public ModelAndView shoppingCart(Model model) {
+    public ModelAndView shoppingCart(Model model, @RequestParam(required = false) Long cartItemId, @RequestParam(required = false) Integer quantity) {
         ModelAndView mav = new ModelAndView("shopping-cart");
         List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId());
         mav.addObject("cartitems", list);
-        return  mav;
-    }
-    @GetMapping("/addProductToCart")
-    public ModelAndView addProductToCart(@RequestParam Long productId) {
-        //String email= SecurityContextHolder.getContext().getAuthentication().getName();
-        shoppingCartService.addProduct(productId);
-        return  new ModelAndView("redirect:/shop");
-    }
-
-    @GetMapping("/removeProductFromCart")
-    public ModelAndView removeProductFromCart(Long id) {
-        ModelAndView mav = new ModelAndView("removeProductFromCart");
-        shoppingCartService.removeProduct(id);
+        //mav.getModel().put("subtotal",shoppingCartService.cartSubTotal(cartItemId));
+        //shoppingCartService.updateQuantity(cartItemId,quantity);
         return  mav;
     }
     @GetMapping("/updateQuantity")
-    public ModelAndView updateQuantity() {
-        ModelAndView mav = new ModelAndView("updateQuantity");
+    public ModelAndView updateQuantity(@RequestParam(required = false) Long cartItemId, @RequestParam(required = false) int quantity) {
+        ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
+        mav.getModel().put("subtotal",shoppingCartService.cartSubTotal(cartItemId));
+        System.out.println("Ezt a számot adjuk át éppen: "+ shoppingCartService.cartSubTotal(cartItemId));
+        shoppingCartService.updateQuantity(cartItemId,quantity);
+        return  mav;
+    }
+
+    @GetMapping("/addProductToCart")
+    public ModelAndView addProductToCart(@RequestParam Long productId) {
+        shoppingCartService.addProduct(productId);
+        return  new ModelAndView("redirect:/shop");
+    }
+    @GetMapping("/removeProductFromCart")
+    public ModelAndView removeProductFromCart(Long id) {
+        shoppingCartService.removeProduct(id);
+        ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
         return  mav;
     }
     @GetMapping("/currentlyloggedinuser")

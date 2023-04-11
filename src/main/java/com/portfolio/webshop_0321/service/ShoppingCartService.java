@@ -18,5 +18,8 @@ public interface ShoppingCartService {
 
     void removeProduct(Long Id);
 
-    String updateQuantity(String productId, int quantity, String customerId);
+    void updateQuantity(Long cartItemId,int quantity);
+    Double cartSubTotal(Long cartItemId);
+    Double cartTotal(Long cartitemId);
+
 }

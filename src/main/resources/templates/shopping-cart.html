@@ -22,6 +22,7 @@
       <th>Name</th>
       <th>Price</th>
       <th>Quantity</th>
+      <th>Sub-total</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -29,11 +30,22 @@
     <tr th:each="cartitem: ${cartitems}">
       <td th:text="${cartitem.product.productName}"></td>
       <td th:text="${cartitem.product.productPrice}"></td>
-      <td th:text="${cartitem.quantity}"></td>
       <td>
-        <input type="number" step="1" id="updated-quantity"  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
-<!--        <a th:href="@{/showUpdateForm(productId=${product.productId})}"class="btn btn-primary btn-sm">Update Quantity</a>
-        <a th:href="@{/removeProductFromCart(id=${cartitem.id})}" class="btn btn-danger btn-sm">Delete</a>-->
+          <div class="input-group-append">
+          <form th:action="@{/shopping-cart}" method="get" th:value="${cartitem.id}">
+            <input type="hidden" name="cartItemId" th:value="${cartitem.id}">
+            <input type="number"   name="quantity" th:value="${cartitem.quantity}"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+            >
+            <button class="btn btn-primary btn-sm" type="submit">Update</button>
+          </form>
+          </div>
+      </td>
+      <td>
+        <p th:text="'$' + ${subtotal}">Subtotal</p>
+      </td>
+      <td>
+        <a th:href="@{/removeProductFromCart(id=${cartitem.id})}" class="btn btn-danger btn-sm">Remove from cart</a>
       </td>
     </tr>
     </tbody>
