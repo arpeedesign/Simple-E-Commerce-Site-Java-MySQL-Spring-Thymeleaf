@@ -42,7 +42,7 @@
           </div>
       </td>
       <td>
-        <p th:text="'$' + ${subtotal}">Subtotal</p>
+        <p th:text="'$' + ${cartitem.subTotal}">Subtotal</p>
       </td>
       <td>
         <a th:href="@{/removeProductFromCart(id=${cartitem.id})}" class="btn btn-danger btn-sm">Remove from cart</a>

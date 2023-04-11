@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @RestController
@@ -52,15 +53,17 @@ public class ShoppingCartController {
         ModelAndView mav = new ModelAndView("shopping-cart");
         List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId());
         mav.addObject("cartitems", list);
-        //mav.getModel().put("subtotal",shoppingCartService.cartSubTotal(cartItemId));
-        //shoppingCartService.updateQuantity(cartItemId,quantity);
+        if (cartItemId!=null || quantity!=null){
+            shoppingCartService.updateQuantity(cartItemId,quantity);
+            mav.getModel().put("subtotal",(shoppingCartService.cartSubTotal(cartItemId)));
+        }
+        mav.addObject("totalcartprice",shoppingCartService.cartTotal(cartItemId));
         return  mav;
     }
     @GetMapping("/updateQuantity")
     public ModelAndView updateQuantity(@RequestParam(required = false) Long cartItemId, @RequestParam(required = false) int quantity) {
         ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
         mav.getModel().put("subtotal",shoppingCartService.cartSubTotal(cartItemId));
-        System.out.println("Ezt a számot adjuk át éppen: "+ shoppingCartService.cartSubTotal(cartItemId));
         shoppingCartService.updateQuantity(cartItemId,quantity);
         return  mav;
     }

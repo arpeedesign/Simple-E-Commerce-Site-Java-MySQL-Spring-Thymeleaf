@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,8 +53,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cartItem.setUser(getCurrentUser());
         cartItem.setProduct(productService.findID(productId));
         cartItem.setQuantity(1);
+
+        cartItem.setSubTotal(BigDecimal.valueOf(cartItem.getQuantity()*cartItem.getProduct().getProductPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue());
+
         cartItemRepository.save(cartItem);
         return cartItem.getId();
+    }
+
+    @Override
+    public Double cartSubTotal(Long cartItemId) {
+        CartItem currentCartItem=cartItemRepository.findByCartItemId(cartItemId);
+        Double subtotal=0.0;
+        subtotal =currentCartItem.getQuantity()*currentCartItem.getProduct().getProductPrice();
+        currentCartItem.setSubTotal(BigDecimal.valueOf(subtotal).setScale(2, RoundingMode.HALF_UP).doubleValue());
+        cartItemRepository.save(currentCartItem);
+        return  subtotal;
     }
 
     @Override
@@ -68,19 +83,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public Double cartSubTotal(Long cartItemId) {
-        Double subtotal=null;
-        subtotal =cartItemRepository.findByCartItemId(cartItemId).getQuantity()*cartItemRepository.findByCartItemId(cartItemId).getProduct().getProductPrice();
-        return  subtotal;
-    }
-
-    @Override
     public Double cartTotal(Long cartItemId) {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
-        Double cartTotal=null;
+        Double cartTotal=0.0;
         for (CartItem i:list) {
-            cartTotal = cartTotal + i.getQuantity() * i.getProduct().getProductPrice();
-        }return  cartTotal;
+            cartTotal = cartTotal + i.getSubTotal();
+        }return  BigDecimal.valueOf(cartTotal).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
 }

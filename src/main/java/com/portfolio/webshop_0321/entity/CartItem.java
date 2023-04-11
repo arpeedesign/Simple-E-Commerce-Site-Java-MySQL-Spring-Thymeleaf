@@ -22,6 +22,8 @@ public class CartItem {
     private User user;
     private int quantity;
 
+    private double subTotal;
+
     public long getId() {
         return id;
     }
@@ -52,5 +54,13 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 }
