@@ -33,7 +33,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return userService.findUserByEmail(userDetails.getUsername());
     }
 
-    private User getCurrentUser() {
+    public User getCurrentUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println(email);
         return userService.findUserByEmail(email);

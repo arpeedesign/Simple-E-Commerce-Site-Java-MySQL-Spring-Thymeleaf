@@ -13,6 +13,8 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
  @Query(value = "SELECT * FROM cart_items Where user_id=?1 ", nativeQuery = true)
  List<CartItem> findByUser (Long id);
+ @Query(value = "SELECT * FROM cart_items Where (user_id=?1 AND ordered = false)", nativeQuery = true)
+ List<CartItem> findByUserIdAtOrder (Long id);
  @Query(value = "SELECT * FROM cart_items Where id=?1 ", nativeQuery = true)
  CartItem findByCartItemId (Long cartItemId);
 

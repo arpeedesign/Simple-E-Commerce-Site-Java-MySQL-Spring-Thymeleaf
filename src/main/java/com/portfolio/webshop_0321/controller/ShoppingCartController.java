@@ -3,10 +3,7 @@ package com.portfolio.webshop_0321.controller;
 import com.portfolio.webshop_0321.entity.CartItem;
 import com.portfolio.webshop_0321.entity.Product;
 import com.portfolio.webshop_0321.entity.User;
-import com.portfolio.webshop_0321.service.CustomerService;
-import com.portfolio.webshop_0321.service.ProductService;
-import com.portfolio.webshop_0321.service.ShoppingCartService;
-import com.portfolio.webshop_0321.service.UserService;
+import com.portfolio.webshop_0321.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.security.core.Authentication;
@@ -30,6 +27,8 @@ public class ShoppingCartController {
     private ProductService productService;
     @Autowired
     UserService userService;
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
@@ -83,5 +82,19 @@ public class ShoppingCartController {
     public User currentlyloggedinuser() {
         return  userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
-
+    @GetMapping("/orderCartItems")
+    public ModelAndView orderCartItems() {
+        orderService.orderCartItems(shoppingCartService.getCurrentUser().getId());
+        ModelAndView mav = new ModelAndView("redirect:/ordered");
+        return  mav;
+    }
+    @GetMapping("/cancelOrderedCartItems")
+    public ModelAndView cancelOrderedCartItems() {
+        ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
+        return  mav;
+    }
+    @GetMapping("/ordered")
+    public ModelAndView ordered() {
+        return  new ModelAndView("ordered");
+    }
 }

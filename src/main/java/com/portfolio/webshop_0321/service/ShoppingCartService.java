@@ -15,6 +15,7 @@ public interface ShoppingCartService {
     User getCurrentlyLoggedInCustomer(Authentication authentication);
 
     Long addProduct(Long productId);
+    User getCurrentUser();
 
     void removeProduct(Long Id);
 

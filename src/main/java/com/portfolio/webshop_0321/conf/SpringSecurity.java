@@ -31,7 +31,7 @@ public class SpringSecurity {
                         .requestMatchers("/**").permitAll()
                         .requestMatchers("/addProductToCart**").authenticated()
                         .requestMatchers("/dashboard").hasAnyRole("ADMIN")
-                        .anyRequest().permitAll()
+                        //.anyRequest().permitAll()
 /*                        .requestMatchers("/**").permitAll()
                         .requestMatchers("**").permitAll()
                         .requestMatchers("/home**").permitAll()
@@ -40,7 +40,7 @@ public class SpringSecurity {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/user/")
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())

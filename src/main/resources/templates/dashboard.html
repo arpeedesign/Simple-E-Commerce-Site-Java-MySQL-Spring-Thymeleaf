@@ -269,6 +269,24 @@
             </div>
             <!-- Sale & Revenue End UPPER 4 segment -->
 
+            <div class="container">
+                <h2>Orders</h2>
+                <table class="table table-sm table-bordered table-hover table-dark" id="shoppingCartTable">
+                    <thead>
+                    <tr>
+                        <th>Buyer's Name</th>
+                        <th>Order ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order: ${orders}">
+                        <td th:text="${order.user.userFirstName}">x</td>
+                        <td th:text="${order.orderId}">x</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
 
             <!-- Sales Chart Start 2 charts -->
             <div class="container-fluid pt-4 px-4">

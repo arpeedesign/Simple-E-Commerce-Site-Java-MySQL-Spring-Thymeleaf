@@ -5,14 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "cart_items")
-public class CartItem {
+public class CartItem implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -21,13 +23,13 @@ public class CartItem {
     @JoinColumn(name = "user_Id")
     private User user;
     private int quantity;
-
     private double subTotal;
-
+    private boolean ordered;
+    @ManyToOne
+    private Order order;
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -62,5 +64,20 @@ public class CartItem {
 
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public boolean isOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(boolean ordered) {
+        this.ordered = ordered;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
