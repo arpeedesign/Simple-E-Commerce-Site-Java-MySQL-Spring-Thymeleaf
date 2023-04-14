@@ -15,4 +15,7 @@ public interface UserService {
     User findID(Long userId);
     void deleteUser(Long userId);
     ResponseEntity<?> confirmEmail(String confirmationToken);
+    void createAdmin();
+    void createFirstUser();
+
 }

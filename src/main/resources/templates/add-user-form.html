@@ -8,6 +8,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<div th:replace="fragments :: headerdashboard"> Header placeholder</div>
 <div class="container">
     <h2>Add User / Register</h2>
     <hr/>
@@ -40,5 +41,6 @@
     <hr/>
     <a th:href="@{/userlist}">Back to list</a>
 </div>
+<div th:replace="fragments :: footerdashboard">Footer placeholder</div>
 </body>
 </html>

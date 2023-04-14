@@ -13,9 +13,8 @@
     <script src="jquery-3.6.3.min.js"></script>
 </head>
 <body>
-<th:block th:insert="header">Header placeholder</th:block>
+<div th:replace="fragments :: header"> Header placeholder</div>
 <div class="container">
-
     <ul class="list-unstyled">
         <!-- Products -->
         <li class="card py-3 mb-5" th:each="product: ${products}">
@@ -51,7 +50,7 @@
     </ul>
 
 </div>
-<th:block th:insert="footer">Footer placeholder</th:block>
+<div th:replace="fragments :: footer">Footer placeholder</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 </body>

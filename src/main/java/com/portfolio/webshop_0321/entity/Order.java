@@ -1,5 +1,6 @@
 package com.portfolio.webshop_0321.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,11 +15,12 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long orderId;
     @ManyToOne
     @JoinColumn(name = "user_Id")
     private User user;
+    @JsonIgnore
     @OneToMany(mappedBy = "order")
     private List<CartItem> cartItem;
 

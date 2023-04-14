@@ -24,11 +24,22 @@ public class OrderServiceImpl implements OrderService {
         List<CartItem> orderList = cartItemRepository.findByUserIdAtOrder(userId);
         Order order = new Order();
         order.setUser(userService.findID(userId));
-        order.setCartItem(orderList);
+        //order.setCartItem(orderList);
+        orderRepository.save(order);
         for (CartItem i : orderList) {
             i.setOrdered(true);
             i.setOrder(order);
+            cartItemRepository.save(i);
         }
-        orderRepository.save(order);
+    }
+
+    @Override
+    public void cancelOrderedCartItems(Long orderId) {
+        List<CartItem> orderedCartItems = orderRepository.findById(orderId).get().getCartItem();
+        for(CartItem i:orderedCartItems){
+            i.setOrdered(false);
+            cartItemRepository.save(i);
+        }
+        orderRepository.deleteById(orderId);
     }
 }

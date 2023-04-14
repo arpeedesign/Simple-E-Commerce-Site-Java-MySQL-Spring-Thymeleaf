@@ -14,25 +14,13 @@
 </head>
 <body >
 <div th:insert="fragments :: header"> Header placeholder</div>
-<div class="container" align="center" >
+<div class="container m-5" align="center" >
   <h5>You have been ordered the content of your shopping-cart!</h5>
-
-    <a  th:href="@{/cancelOrderedCartItems}" align="center" class="btn btn-danger btn-lg">Order cancellation</a>
   <br/>
   <a th:href="@{/home}">Back to home</a>
 </div>
 <div th:insert="fragments :: footer">Footer placeholder</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
-<script>
-			$(document).ready(function() {
-				$("#shoppingCartTable").DataTable({
-						'aoColumnDefs': [{
-        				'bSortable': false,
-        				'aTargets': [-1] /* 1st one, start by the right */
-    				}]
-				});
-			})
-		</script>
 </body>
 </html>

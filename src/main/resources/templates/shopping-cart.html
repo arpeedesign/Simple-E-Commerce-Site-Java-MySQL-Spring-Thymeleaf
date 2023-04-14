@@ -35,7 +35,7 @@
           <form th:action="@{/shopping-cart}" method="get" th:value="${cartitem.id}">
             <input type="hidden" name="cartItemId" th:value="${cartitem.id}">
             <input type="number"   name="quantity" th:value="${cartitem.quantity}"
-                   oninput="this.value = this.value.replace(/[^1-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                   oninput="this.value = this.value.replace(/[^1-99.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
             >
             <button class="btn btn-primary btn-sm" type="submit">Update</button>
           </form>

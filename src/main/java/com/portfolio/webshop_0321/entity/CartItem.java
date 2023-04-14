@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Table(name = "cart_items")
 public class CartItem implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -25,7 +25,8 @@ public class CartItem implements Serializable {
     private int quantity;
     private double subTotal;
     private boolean ordered;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id", referencedColumnName = "orderId")
     private Order order;
     public long getId() {
         return id;

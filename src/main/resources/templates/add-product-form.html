@@ -9,6 +9,7 @@
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 </head>
 <body>
+<div th:replace="fragments :: headerdashboard"> Header placeholder</div>
 <div class="container">
   <h2>Add Single Product</h2>
   <hr/>
@@ -23,5 +24,6 @@
   <hr/>
   <a th:href="@{/list}">Back to list</a>
 </div>
+<div th:replace="fragments :: footerdashboard"> Footer placeholder</div>
 </body>
 </html>

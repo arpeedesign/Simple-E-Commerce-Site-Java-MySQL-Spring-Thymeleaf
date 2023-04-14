@@ -43,7 +43,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Long addProduct(Long productId) {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
         for (CartItem i:list) {
-            if(i.getProduct().getProductId()==productId){
+            if(i.getProduct().getProductId()==productId && i.isOrdered()==false){
                 i.setQuantity(i.getQuantity()+1);
                 cartItemRepository.save(i);
                 return i.getId();
@@ -51,7 +51,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
         CartItem cartItem = new CartItem();
         cartItem.setUser(getCurrentUser());
-        cartItem.setProduct(productService.findID(productId));
+        Product product = productService.findID(productId);
+        cartItem.setProduct(product);
         cartItem.setQuantity(1);
 
         cartItem.setSubTotal(BigDecimal.valueOf(cartItem.getQuantity()*cartItem.getProduct().getProductPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue());
@@ -87,7 +88,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
         Double cartTotal=0.0;
         for (CartItem i:list) {
-            cartTotal = cartTotal + i.getSubTotal();
+            if(i.isOrdered()==false) {
+                cartTotal = cartTotal + i.getSubTotal();
+            }
         }return  BigDecimal.valueOf(cartTotal).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 

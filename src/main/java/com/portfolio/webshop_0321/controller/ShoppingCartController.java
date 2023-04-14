@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ShoppingCartController {
@@ -50,7 +51,7 @@ public class ShoppingCartController {
     @GetMapping("/shopping-cart")
     public ModelAndView shoppingCart(Model model, @RequestParam(required = false) Long cartItemId, @RequestParam(required = false) Integer quantity) {
         ModelAndView mav = new ModelAndView("shopping-cart");
-        List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId());
+        List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId()).stream().filter(c->!c.isOrdered()).collect(Collectors.toList());
         mav.addObject("cartitems", list);
         if (cartItemId!=null || quantity!=null){
             shoppingCartService.updateQuantity(cartItemId,quantity);
@@ -89,7 +90,8 @@ public class ShoppingCartController {
         return  mav;
     }
     @GetMapping("/cancelOrderedCartItems")
-    public ModelAndView cancelOrderedCartItems() {
+    public ModelAndView cancelOrderedCartItems(@RequestParam(required = false) Long orderId) {
+        //orderService.cancelOrderedCartItems(orderId);
         ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
         return  mav;
     }

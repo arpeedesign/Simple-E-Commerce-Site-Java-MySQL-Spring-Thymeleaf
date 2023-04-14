@@ -84,4 +84,33 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseEntity.badRequest().body("Error: Couldn't verify email");
     }
+    @Override
+    public void createAdmin(){
+        if(userRepository.findByUserEmail("admin@admin.com").getUserEmail().isBlank()) {
+            User admin = new User();
+            admin.setUserEmail("admin@admin.com");
+            admin.setUserFirstName("admin");
+            admin.setUserLastName("admin");
+            admin.setUserGender("X");
+            admin.setUserPassword("Password");
+            admin.setEnabled(true);
+            //admin.setRoles();
+            userRepository.save(admin);
+        }
+    }
+
+    @Override
+    public void createFirstUser() {
+        if(userRepository.findByUserEmail("user@user.com").getUserEmail().isBlank()) {
+            User user = new User();
+            user.setUserEmail("user@user.com");
+            user.setUserFirstName("user");
+            user.setUserLastName("user");
+            user.setUserGender("X");
+            user.setUserPassword("Password");
+            user.setEnabled(true);
+            //user.setRoles();
+            userRepository.save(user);
+        }
+    }
 }
