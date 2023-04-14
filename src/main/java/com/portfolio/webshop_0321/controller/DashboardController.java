@@ -1,7 +1,11 @@
 package com.portfolio.webshop_0321.controller;
 
 import com.portfolio.webshop_0321.entity.DashboardData;
+import com.portfolio.webshop_0321.entity.Order;
+import com.portfolio.webshop_0321.entity.Product;
 import com.portfolio.webshop_0321.service.DashboardDataService;
+import com.portfolio.webshop_0321.service.OrderService;
+import com.portfolio.webshop_0321.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +22,10 @@ public class DashboardController {
     private static final String DASHBOARD = "dashboard";
     @Autowired
     DashboardDataService dashboardDataService;
+    @Autowired
+    ProductService productService;
+    @Autowired
+    OrderService orderService;
 
 
     @PostMapping("/saveDashboardData")
@@ -43,6 +51,10 @@ public class DashboardController {
         LocalDate selectedDay = LocalDate.parse(date);
         mav.getModel().put("selectedDayProfit", dashboardDataService.selectedDayProfit(selectedDay));
         mav.getModel().put("selectedDaySales", dashboardDataService.selectedDaySales(selectedDay));
+        List<Product> list = productService.findAll();
+        mav.addObject("products", list);
+        List<Order> orderList = orderService.findAllOrder();
+        mav.addObject("orders", orderList);
         return mav;
     }
 

@@ -14,16 +14,15 @@
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script src="/static/js/include-html.min.js"></script>
 </head>
-<body>
+<body class="bg-secondary">
 <div th:replace="fragments :: headerdashboard"> Header placeholder</div>
-<div class="container">
-  <h2>Product List Page</h2>
-  <hr/>
+<div class="container text-light">
   <p>You can add products to the list by clicking on one of the following options.</p>
-  <a th:href="@{addProductForm}" class="btn btn-info mb-2">Add Single Product</a>
-  <a th:href="@{addBulkProductForm}" class="btn btn-info mb-2">Add Bulk Product</a>
-  <h6>Product List</h6>
-  <table class="table table-bordered table-striped" id="productTable">
+  <a th:href="@{addProductForm}" class="btn btn-primary mb-2">Add Single Product</a>
+  <a th:href="@{addBulkProductForm}" class="btn btn-primary mb-2">Add Bulk Product</a>
+  <hr>
+  <h2 class="mb-4">Product List</h2>
+  <table class="table table-bordered table-dark table-striped" id="productTable">
     <thead>
     <tr>
       <th>Name</th>
@@ -40,19 +39,16 @@
       <td th:text="${product.productPic}"></td>
       <td th:text="${product.productPrice}"></td>
       <td>
-        <a th:href="@{/showUpdateForm(productId=${product.productId})}" class="btn btn-info">Update</a>
+        <a th:href="@{/showUpdateForm(productId=${product.productId})}" class="btn btn-primary">Update</a>
         <a th:href="@{/deleteProduct(productId=${product.productId})}" class="btn btn-danger ml-2">Delete</a>
       </td>
     </tr>
     </tbody>
   </table>
   <hr/>
-  <a th:href="@{/home}">Back to home</a>
-  <hr/>
-
-
-
+  <a href="dashboard" class="btn btn-primary mb-5"> < Back to Dashboard</a>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 <script>
@@ -64,7 +60,7 @@
     				}]
 				});
 			})
-		</script>
+</script>
 <div th:replace="fragments :: footerdashboard"> Footer placeholder</div>
 </body>
 </html>

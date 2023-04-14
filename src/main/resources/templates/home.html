@@ -16,8 +16,9 @@
 </head>
 <body>
 <div th:replace="fragments :: header"> Header placeholder</div>
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-  <div class="col-md-5 p-lg-5 mx-auto my-5">
+
+<div class="position-relative overflow-hidden  text-center bg-light"> <!--p-3 p-md-5 m-md-3-->
+  <div class="col-md-5 p-lg-5 mx-auto "> <!--my-5-->
     <h1 class="display-4 font-weight-normal">Welcome to my protfolio project!</h1>
     <p class="lead font-weight-normal">The backend is written in Java 17, where I used Gradle, Spring WEB, Spring Security and MySQL. I used Thymeleaf to generate the dynamic part of the frontend.</p>
     <a class="btn btn-outline-primary" href="/login">Log in</a>
@@ -112,7 +113,7 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
           <h3 class="mb-0 pb-3">
-            <a class="text-primary" href="registration">Registration</a>
+            <a class="text-primary" href="dashboard">Dashboard</a>
           </h3>
           <div class="mb-1 text-muted"></div>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
@@ -124,7 +125,7 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
           <h3 class="mb-0 pb-3">
-            <a class="text-primary" href="login">Login</a>
+            <a class="text-primary" href="dashboard">Upload Sales Data</a>
           </h3>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
         </div>
@@ -137,7 +138,7 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
           <h3 class="mb-0 pb-3">
-            <a class="text-primary" href="shop">Shop</a>
+            <a class="text-primary" href="dashboard">Date Selector</a>
           </h3>
           <div class="mb-1 text-muted"></div>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
@@ -149,7 +150,7 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
           <h3 class="mb-0 pb-3">
-            <a class="text-primary" href="shopping-cart">Shopping-Cart</a>
+            <a class="text-primary" href="dashboard">Sales Data Summary</a>
           </h3>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
         </div>
@@ -162,21 +163,46 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
           <h3 class="mb-0 pb-3">
-            <a class="text-primary" href="shopping-cart">Order</a>
+            <a class="text-primary" href="dashboard">Order List</a>
           </h3>
           <div class="mb-1 text-muted"></div>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
         </div>
       </div>
     </div>
-    <div class="col">
-
+    <div class="col-md">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
+          <h3 class="mb-0 pb-3">
+            <a class="text-primary" href="list">Edit Products</a>
+          </h3>
+          <div class="mb-1 text-muted"></div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-secondary">Admin handling</strong>
+          <h3 class="mb-0 pb-3">
+            <a class="text-primary" href="userlist">Order Users</a>
+          </h3>
+          <div class="mb-1 text-muted"></div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
     </div>
   </div>
 </div>
 </div>
 
-<div class="container">
+<div class="container mb-5">
   <button class="btn btn-primary" type="button" onclick="document.location='/list'">Add Product</button>
   <button class="btn btn-primary" type="button" onclick="document.location='/userlist'">Add User</button>
   <button class="btn btn-primary" type="button" onclick="document.location='/dashboard'">Dashboard</button>

@@ -8,9 +8,9 @@
         crossorigin="anonymous">
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 </head>
-<body>
+<body class="bg-secondary">
 <div th:replace="fragments :: headerdashboard"> Header placeholder</div>
-<div class="container">
+<div class="container text-light">
   <h2>Add Bulk Product</h2>
   <p>by uploading an excel file</p>
   <br>
@@ -24,12 +24,12 @@
                 id="input-file"
                 type="file"
                 name="file"/>
-          <button class="btn btn-sm btn-outline-success" type="submit">
+          <button class="btn btn-sm btn-primary" type="submit">
           Upload
           </button>
   </form>
   <hr/>
-  <a th:href="@{/list}">Back to list</a>
+    <a href="list" class="btn btn-primary mb-5"> < Back to Product List</a>
 </div>
 <div th:replace="fragments :: footerdashboard"> Footer placeholder</div>
 </body>

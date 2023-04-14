@@ -14,10 +14,10 @@
 </head>
 <body >
 <div th:insert="fragments :: header"> Header placeholder</div>
-<div class="container m-5" align="center" >
+<div align="center" >
   <h5>You have been ordered the content of your shopping-cart!</h5>
   <br/>
-  <a th:href="@{/home}">Back to home</a>
+  <a th:href="@{/home}" class="btn btn-primary"> < Back to home</a>
 </div>
 <div th:insert="fragments :: footer">Footer placeholder</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

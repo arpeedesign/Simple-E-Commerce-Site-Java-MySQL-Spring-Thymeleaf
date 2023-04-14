@@ -14,44 +14,28 @@
 </head>
 <body>
 <div th:replace="fragments :: header"> Header placeholder</div>
-<div class="container">
-    <ul class="list-unstyled">
-        <!-- Products -->
-        <li class="card py-3 mb-5" th:each="product: ${products}">
-            <div class="row">
-                <div class="col-4 py-0 bg-info" >
-                    <img style="position:absolute;max-height:100%;top:0;" th:src="${product.productPic}" height="250">
-                </div>
-
-                <div class="col-8">
-                    <div class="card-body py-0 px-md-4">
-                        <div class="mb-2">
-                            <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#" th:text="${product.productType}">Accessories</a>
+<div class="container mt-4">
+    <ul>
+        <li class="card col-5 border-primary border-3 py-3 mb-3" th:each="product: ${products}">
+            <div class="card-body  px-md-4">
+                <div class="mb-2">
+                            <p class="d-inline-block text-secondary small font-weight-medium mb-1" href="#" th:text="${product.productType}">Accessories</p>
                             <h2 class="h6 font-weight-normal">
-                                <a class="text-secondary" href="#" th:text="${product.productName}">PRODUCT NAME PLACE HOLDER</a>
+                                <a class="text-secondary" th:text="${product.productName}">PRODUCT NAME PLACE HOLDER</a>
                                 <span class="badge badge-success badge-pill ml-1">New arrival</span>
                             </h2>
                             <div class="d-block">
                                 <span class="h5" th:text="'$'+${product.productPrice}">$99999.99</span>
                             </div>
-                        </div>
-
-                        <div class="mb-3">
-
-                        </div>
-                        <a type="button" th:href="@{/addProductToCart(productId=${product.productId})}" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover mr-1 ">Add to Cart</a>
-                        <button type="button" class="btn btn-sm btn-soft-secondary btn-pill transition-3d-hover">
-                        </button>
-                    </div>
                 </div>
+                <a type="button" th:href="@{/addProductToCart(productId=${product.productId})}" class="btn btn-sm btn-outline-primary">Add to Cart</a>
             </div>
         </li>
-        <!-- End Products -->
     </ul>
-
 </div>
 <div th:replace="fragments :: footer">Footer placeholder</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+
 </body>
 </html>

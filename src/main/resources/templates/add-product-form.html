@@ -8,21 +8,25 @@
         crossorigin="anonymous">
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 </head>
-<body>
+<body class="bg-secondary text-light">
 <div th:replace="fragments :: headerdashboard"> Header placeholder</div>
 <div class="container">
   <h2>Add Single Product</h2>
   <hr/>
   <form th:action="@{/saveProduct}" th:object="${product}" method="POST">
+    <label>Product Name</label>
     <input type="text" th:field="*{productName}" placeholder="Enter name" class="form-control col-4 mb-4" />
+    <label>Product Type</label>
     <input type="text" th:field="*{productType}" placeholder="Enter product type" class="form-control col-4 mb-4" />
+    <label>Select Picture</label>
     <input type="text" th:field="*{productPic}" placeholder="Enter product pic" class="form-control col-4 mb-4" />
+    <label>Product Price</label>
     <input type="text" th:field="*{productPrice}" placeholder="Enter product price" class="form-control col-4 mb-4" />
     <button class="btn btn-primary" type="submit">Save</button>
     <input type="hidden" th:field="*{productId}"/>
   </form>
   <hr/>
-  <a th:href="@{/list}">Back to list</a>
+  <a href="list" class="btn btn-primary mb-5"> < Back to Product List</a>
 </div>
 <div th:replace="fragments :: footerdashboard"> Footer placeholder</div>
 </body>

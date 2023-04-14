@@ -3,6 +3,7 @@ package com.portfolio.webshop_0321.service;
 import com.portfolio.webshop_0321.dto.UserDto;
 import com.portfolio.webshop_0321.entity.*;
 import com.portfolio.webshop_0321.repository.ConfirmationTokenRepository;
+import com.portfolio.webshop_0321.repository.OrderRepository;
 import com.portfolio.webshop_0321.repository.RoleRepository;
 import com.portfolio.webshop_0321.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    OrderRepository orderRepository;
     private User user;
 
     @Override
@@ -113,4 +116,5 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
+
 }

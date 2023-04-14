@@ -12,13 +12,14 @@
         crossorigin="anonymous" />
   <script src="jquery-3.6.3.min.js"></script>
 </head>
-<body>
+<body class="bg-secondary text-light">
 <div th:replace="fragments :: headerdashboard"> Header placeholder</div>
 <div class="container">
+  <br>
+  <a th:href="@{addUserForm}" class="btn btn-primary mb-2 m-4">Add User To List</a>
   <h2>User List</h2>
-  <hr/>
-  <a th:href="@{addUserForm}" class="btn btn-info mb-2">Add User</a>
-  <table class="table table-bordered table-striped" id="productTable">
+  <hr>
+  <table class="table table-bordered table-striped table-dark" id="productTable">
     <thead>
     <tr>
       <th>First Name</th>
@@ -33,14 +34,14 @@
       <td th:text="${user.userLastName}"></td>
       <td th:text="${user.userEmail}"></td>
       <td>
-        <a th:href="@{/showUpdateUserForm(userId=${user.id})}" class="btn btn-info">Update</a>
+        <a th:href="@{/showUpdateUserForm(userId=${user.id})}" class="btn btn-primary">Update</a>
         <a th:href="@{/deleteUser(userId=${user.id})}" class="btn btn-danger ml-2">Delete</a>
       </td>
     </tr>
     </tbody>
   </table>
   <hr/>
-  <a th:href="@{/home}">Back to home</a>
+  <a href="dashboard" class="btn btn-primary mb-5"> < Back to Dashboard</a>
 </div>
 <div th:replace="fragments :: footerdashboard">Footer placeholder</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
