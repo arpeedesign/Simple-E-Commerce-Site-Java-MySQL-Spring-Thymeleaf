@@ -55,6 +55,7 @@ public class DashboardController {
         mav.addObject("products", list);
         List<Order> orderList = orderService.findAllOrder();
         mav.addObject("orders", orderList);
+        mav.addObject("orderedCartItemsTotalValue",dashboardDataService.orderedCartItemsTotalValue());
         return mav;
     }
 

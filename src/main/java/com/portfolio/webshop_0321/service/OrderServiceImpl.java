@@ -18,13 +18,15 @@ public class OrderServiceImpl implements OrderService {
     UserService userService;
     @Autowired
     OrderRepository orderRepository;
+    @Autowired
+    ShoppingCartService shoppingCartService;
 
     @Override
     public void orderCartItems(Long userId) {
         List<CartItem> orderList = cartItemRepository.findByUserIdAtOrder(userId);
         Order order = new Order();
         order.setUser(userService.findID(userId));
-        //order.setCartItem(orderList);
+        order.setOrderedCartTotalValue(shoppingCartService.cartTotal());
         orderRepository.save(order);
         for (CartItem i : orderList) {
             i.setOrdered(true);

@@ -22,4 +22,5 @@ public interface DashboardDataService {
     int selectedDaySales(LocalDate date);
 
     int selectedDayProfit(LocalDate date);
+    Double orderedCartItemsTotalValue();
 }

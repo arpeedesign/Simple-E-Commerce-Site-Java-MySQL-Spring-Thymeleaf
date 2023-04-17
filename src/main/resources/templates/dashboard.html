@@ -117,8 +117,8 @@
 
             <div class="container text-light mb-5">
                 <h2 >Order List</h2>
-                <table class="table table-sm table-bordered table-hover table-dark" id="orderCartTable">
-                    <thead class="text-primary thead-dark" >
+                <table class="table table-sm table-bordered table-hover table-light table-bordered" id="orderCartTable">
+                    <thead class="text-primary thead-light" >
                     <tr>
                         <th>Order ID</th>
                         <th>Buyer's Name</th>
@@ -129,14 +129,14 @@
                     </thead>
                     <tbody>
                     <tr th:each="order: ${orders}">
-                        <td th:text="${order.orderId}">x</td>
-                        <td th:text="${order.user.userFirstName} +' ' + ${order.user.userLastName}">x</td>
-                        <td th:text="${order.user.userEmail}">x</td>
-                        <td >$999</td>
+                        <td th:text="${order.orderId}">12345</td>
+                        <td th:text="${order.user.userFirstName} +' ' + ${order.user.userLastName}">John</td>
+                        <td th:text="${order.user.userEmail}">john@gmail.com</td>
+                        <td th:text="${order.orderedCartTotalValue}">$999</td>
                     </tr>
                     <tr class="bg-primary">
-                        <td colspan="3" style="text-align: right; font-weight:bold; font-color:dark;">Sum orders:</td>
-                        <td style="font-weight:bold;">$99999</td>
+                        <td colspan="3" style="text-align: right; font-weight:bold; color:white;">Sum orders:</td>
+                        <td style="font-weight:bold; color:white"  th:text="${orderedCartItemsTotalValue}">$99999</td>
                     </tr>
                     </tbody>
                 </table>
@@ -151,7 +151,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
  <script>
 			$(document).ready(function() {
-				$("#productTable").DataTable({
+				$("#orderCartTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */

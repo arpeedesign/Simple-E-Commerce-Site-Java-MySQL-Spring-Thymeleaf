@@ -24,6 +24,8 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<CartItem> cartItem;
 
+    private double orderedCartTotalValue;
+
 
     public long getOrderId() {
         return orderId;
@@ -47,6 +49,14 @@ public class Order {
 
     public void setCartItem(List<CartItem> cartItem) {
         this.cartItem = cartItem;
+    }
+
+    public double getOrderedCartTotalValue() {
+        return orderedCartTotalValue;
+    }
+
+    public void setOrderedCartTotalValue(double orderedCartTotalValue) {
+        this.orderedCartTotalValue = orderedCartTotalValue;
     }
 
 

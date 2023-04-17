@@ -31,16 +31,6 @@ public class ShoppingCartController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(Authentication authentication) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return "authentication.getName() " + authentication.getName()
-                + "\nauthentication.getDetails() " + authentication.getDetails()
-                + "\nauthentication.getPrincipal() " +authentication.getPrincipal()
-                +"\nUser has authorities: " + userDetails.getAuthorities()
-                +"\nUsername: " + userDetails.getUsername();
-    }
     @GetMapping("/shop")
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("shop");
@@ -53,11 +43,15 @@ public class ShoppingCartController {
         ModelAndView mav = new ModelAndView("shopping-cart");
         List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId()).stream().filter(c->!c.isOrdered()).collect(Collectors.toList());
         mav.addObject("cartitems", list);
+        if(cartItemId!=null && quantity==null){
+            shoppingCartService.removeProduct(cartItemId);
+            mav.getModel().put("subtotal",(shoppingCartService.cartSubTotal(cartItemId)));
+        }
         if (cartItemId!=null || quantity!=null){
             shoppingCartService.updateQuantity(cartItemId,quantity);
             mav.getModel().put("subtotal",(shoppingCartService.cartSubTotal(cartItemId)));
         }
-        mav.addObject("totalcartprice",shoppingCartService.cartTotal(cartItemId));
+        mav.addObject("totalcartprice",shoppingCartService.cartTotal());
         return  mav;
     }
     @GetMapping("/updateQuantity")
@@ -67,12 +61,12 @@ public class ShoppingCartController {
         shoppingCartService.updateQuantity(cartItemId,quantity);
         return  mav;
     }
-
     @GetMapping("/addProductToCart")
     public ModelAndView addProductToCart(@RequestParam Long productId) {
         shoppingCartService.addProduct(productId);
         return  new ModelAndView("redirect:/shop");
     }
+
     @GetMapping("/removeProductFromCart")
     public ModelAndView removeProductFromCart(Long id) {
         shoppingCartService.removeProduct(id);
@@ -89,14 +83,24 @@ public class ShoppingCartController {
         ModelAndView mav = new ModelAndView("redirect:/ordered");
         return  mav;
     }
+    @GetMapping("/ordered")
+    public ModelAndView ordered() {
+        return  new ModelAndView("ordered");
+    }
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return "authentication.getName() " + authentication.getName()
+                + "\nauthentication.getDetails() " + authentication.getDetails()
+                + "\nauthentication.getPrincipal() " +authentication.getPrincipal()
+                +"\nUser has authorities: " + userDetails.getAuthorities()
+                +"\nUsername: " + userDetails.getUsername();
+    }
     @GetMapping("/cancelOrderedCartItems")
     public ModelAndView cancelOrderedCartItems(@RequestParam(required = false) Long orderId) {
         //orderService.cancelOrderedCartItems(orderId);
         ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
         return  mav;
-    }
-    @GetMapping("/ordered")
-    public ModelAndView ordered() {
-        return  new ModelAndView("ordered");
     }
 }

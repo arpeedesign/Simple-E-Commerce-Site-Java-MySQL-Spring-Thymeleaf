@@ -21,6 +21,6 @@ public interface ShoppingCartService {
 
     void updateQuantity(Long cartItemId,int quantity);
     Double cartSubTotal(Long cartItemId);
-    Double cartTotal(Long cartitemId);
+    Double cartTotal();
 
 }

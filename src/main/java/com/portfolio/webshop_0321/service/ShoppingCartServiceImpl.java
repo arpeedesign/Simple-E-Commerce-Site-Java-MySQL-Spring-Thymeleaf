@@ -84,11 +84,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public Double cartTotal(Long cartItemId) {
+    public Double cartTotal() {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
-        Double cartTotal=0.0;
+        double cartTotal=0.0;
         for (CartItem i:list) {
-            if(i.isOrdered()==false) {
+            if(!i.isOrdered()) {
                 cartTotal = cartTotal + i.getSubTotal();
             }
         }return  BigDecimal.valueOf(cartTotal).setScale(2, RoundingMode.HALF_UP).doubleValue();
