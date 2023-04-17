@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Admin Dashboard</title>
     <link rel="stylesheet"
           type="text/css"
@@ -115,16 +115,16 @@
                 </div>
             <!-- Sale & Revenue End UPPER 4 segment -->
 
+            <!-- Order List Table START -->
             <div class="container text-light mb-5">
                 <h2 >Order List</h2>
-                <table class="table table-sm table-bordered table-hover table-light table-bordered" id="orderCartTable">
+                <table class="table table-sm table-bordered table-hover table-light table-bordered" id="orderedCartTable">
                     <thead class="text-primary thead-light" >
                     <tr>
                         <th>Order ID</th>
                         <th>Buyer's Name</th>
                         <th>Email</th>
                         <th>Cart Value</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -141,24 +141,20 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Order List Table END -->
             </div>
         <!-- Content End -->
 
     </div>
     </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
- <script>
-			$(document).ready(function() {
-				$("#orderCartTable").DataTable({
-						'aoColumnDefs': [{
-        				'bSortable': false,
-        				'aTargets': [-1] /* 1st one, start by the right */
-    				}]
-				});
-			})
-</script>
 <div th:replace="fragments :: footerdashboard"> Footer placeholder</div>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#orderedCartTable').DataTable();
+} );
+</script>
 </body>
 </html>

@@ -18,29 +18,13 @@ public class Controller {
 
     @GetMapping({"/home", "", "/"})
     public ModelAndView home() {
-      /*  userService.createAdmin();
-        userService.createFirstUser();
-        productService.createFirstProducts("Hp Mouse");*/
         return new ModelAndView("home");
     }
-/*    @PostConstruct
+
+    @PostConstruct
     private void postConstruct() {
-*//*        User admin = new User();
-        admin.setUserEmail("admin@admin.com");
-        admin.setUserFirstName("admin");
-        admin.setUserLastName("admin");
-        admin.setUserGender("X");
-        admin.setUserPassword("Password");
-        admin.setEnabled(true);
-        //admin.setRoles();
-        userService.saveUser(admin);*//*
-        User user = new User();
-        user.setUserEmail("user@user.com");
-        user.setUserFirstName("user");
-        user.setUserLastName("user");
-        user.setUserGender("X");
-        user.setUserPassword("Password");
-        user.setEnabled(true);
-        userService.saveUser(user);
-    }*/
+        userService.createAdmin();
+        //userService.createFirstUser();
+    }
+
 }

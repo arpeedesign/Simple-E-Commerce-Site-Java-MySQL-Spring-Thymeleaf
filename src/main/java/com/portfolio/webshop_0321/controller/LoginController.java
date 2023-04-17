@@ -17,7 +17,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public ModelAndView loginForm() {
-        return new ModelAndView("login");// NEM USER KÉNE?
+        return new ModelAndView("login");
     }
 
     @GetMapping("/registration")
@@ -44,7 +44,10 @@ public class LoginController {
         }
 
         userService.saveUserDto(userDto);
-        return new ModelAndView("redirect:/registration?success");
+        return new ModelAndView("redirect:/email-sent");
     }
-
+    @GetMapping("/email-sent")
+    public ModelAndView emailSent() {
+        return new ModelAndView("email-sent");
+    }
 }

@@ -54,9 +54,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Product product = productService.findID(productId);
         cartItem.setProduct(product);
         cartItem.setQuantity(1);
-
         cartItem.setSubTotal(BigDecimal.valueOf(cartItem.getQuantity()*cartItem.getProduct().getProductPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue());
-
         cartItemRepository.save(cartItem);
         return cartItem.getId();
     }

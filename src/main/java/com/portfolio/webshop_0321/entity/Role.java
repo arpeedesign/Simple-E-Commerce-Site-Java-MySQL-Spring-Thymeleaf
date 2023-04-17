@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="roles")//SQL table name
+@Table(name="roles")
 @Entity
 public class Role {
     @Id

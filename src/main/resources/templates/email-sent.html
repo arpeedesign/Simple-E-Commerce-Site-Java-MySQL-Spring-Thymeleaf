@@ -13,11 +13,12 @@
   <script src="jquery-3.6.3.min.js"></script>
 </head>
 <body>
-<div class="container">
-  <h2 align="center">Complete your registration!</h2>
-  <p align="center">Check your email and click on the confirmation link!</p>
+<div th:replace="fragments :: header"> Header placeholder</div>
+<div class="container ">
+  <h2 align="center" class="mt-5 mb-4 text-primary">Complete your registration!</h2>
+  <p align="center"class="mb-5">Check your email and click on the confirmation link!</p>
 
-  <p align="center">You will be redirected in <span id="counter">10</span> seconds to the Homa page.</p>
+  <p align="center">You will be redirected in <span id="counter" class="text-primary font-weight-bold">10</span> seconds to the Home page.</p>
   <script type="text/javascript">
         function countdown() {
             var i = document.getElementById('counter');
@@ -33,5 +34,6 @@
   <hr/>
   <button class="btn btn-primary" type="button" onclick="document.location='/home'">Back to home</button>
 </div>
+<div th:replace="fragments :: footer">Footer placeholder</div>
 </body>
 </html>
