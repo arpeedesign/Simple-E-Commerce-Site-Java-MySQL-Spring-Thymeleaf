@@ -18,6 +18,7 @@
   <title>Fragments for the website</title>
 </head>
 <body>
+
 <!--HEADER BASIC START-->
 <div th:fragment="header">
   <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -26,7 +27,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <li class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto " >
           <li class="nav-item active">
             <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
@@ -46,17 +47,24 @@
             <a class="nav-link" href="login" >Login</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="logout" >Logout</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="registration" >Register</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="user/">Profile</a>
           </li>
+          <li class="nav-item" id="loggedIn">
+            <a class="nav-link" th:text="'Hello ' + ${userFirstName}">FirstName</a>
+          </li>
         </ul>
-      </div>
+      </li>
     </div>
   </nav>
 </div>
 <!--HEADER BASIC END-->
+
 <!--HEADER DASHBOARD START-->
 <div th:fragment="headerdashboard">
   <nav class="text-white navbar navbar-expand-md navbar-light bg-dark ">

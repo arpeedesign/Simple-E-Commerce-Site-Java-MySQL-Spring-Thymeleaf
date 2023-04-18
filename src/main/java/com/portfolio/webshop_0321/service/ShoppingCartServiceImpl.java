@@ -42,9 +42,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public Long addProduct(Long productId) {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
-        for (CartItem i:list) {
-            if(i.getProduct().getProductId()==productId && i.isOrdered()==false){
-                i.setQuantity(i.getQuantity()+1);
+        for (CartItem i : list) {
+            if (i.getProduct().getProductId() == productId && i.isOrdered() == false) {
+                i.setQuantity(i.getQuantity() + 1);
                 cartItemRepository.save(i);
                 return i.getId();
             }
@@ -54,19 +54,33 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Product product = productService.findID(productId);
         cartItem.setProduct(product);
         cartItem.setQuantity(1);
-        cartItem.setSubTotal(BigDecimal.valueOf(cartItem.getQuantity()*cartItem.getProduct().getProductPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue());
+        cartItem.setSubTotal(BigDecimal.valueOf(cartItem.getQuantity() * cartItem.getProduct().getProductPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue());
         cartItemRepository.save(cartItem);
         return cartItem.getId();
     }
 
     @Override
+    public void updateQuantity(Long cartItemId, int quantity) {
+        CartItem currentCartItem = cartItemRepository.findByCartItemId(cartItemId);
+        if (quantity == 0) {
+            removeProduct(cartItemId);
+            return;
+        }
+        currentCartItem.setQuantity(quantity);
+        cartItemRepository.save(currentCartItem);
+    }
+
+    @Override
     public Double cartSubTotal(Long cartItemId) {
-        CartItem currentCartItem=cartItemRepository.findByCartItemId(cartItemId);
-        Double subtotal=0.0;
-        subtotal =currentCartItem.getQuantity()*currentCartItem.getProduct().getProductPrice();
+        CartItem currentCartItem = cartItemRepository.findByCartItemId(cartItemId);
+        Double subtotal = 0.0;
+        if (currentCartItem == null) {
+            return subtotal;
+        }
+        subtotal = currentCartItem.getQuantity() * currentCartItem.getProduct().getProductPrice();
         currentCartItem.setSubTotal(BigDecimal.valueOf(subtotal).setScale(2, RoundingMode.HALF_UP).doubleValue());
         cartItemRepository.save(currentCartItem);
-        return  subtotal;
+        return subtotal;
     }
 
     @Override
@@ -75,21 +89,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void updateQuantity(Long cartItemId, int quantity) {
-        CartItem currentCartItem = cartItemRepository.findByCartItemId(cartItemId);
-        currentCartItem.setQuantity(quantity);
-        cartItemRepository.save(currentCartItem);
-    }
-
-    @Override
     public Double cartTotal() {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
-        double cartTotal=0.0;
-        for (CartItem i:list) {
-            if(!i.isOrdered()) {
+        double cartTotal = 0.0;
+        for (CartItem i : list) {
+            if (!i.isOrdered()) {
                 cartTotal = cartTotal + i.getSubTotal();
             }
-        }return  BigDecimal.valueOf(cartTotal).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        }
+        return BigDecimal.valueOf(cartTotal).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
 }

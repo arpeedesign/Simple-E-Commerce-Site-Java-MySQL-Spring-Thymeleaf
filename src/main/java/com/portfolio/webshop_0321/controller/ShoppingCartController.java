@@ -50,8 +50,6 @@ public class ShoppingCartController {
             mav.getModel().put("totalcartprice", 0.0);
             return mav;
         }
-        List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId()).stream().filter(c -> !c.isOrdered()).collect(Collectors.toList());
-        mav.addObject("cartitems", list);
         if (cartItemId != null && quantity == null) {
             shoppingCartService.removeProduct(cartItemId);
             mav.getModel().put("subtotal", (shoppingCartService.cartSubTotal(cartItemId)));
@@ -60,6 +58,8 @@ public class ShoppingCartController {
             shoppingCartService.updateQuantity(cartItemId, quantity);
             mav.getModel().put("subtotal", (shoppingCartService.cartSubTotal(cartItemId)));
         }
+        List<CartItem> list = shoppingCartService.listCartItems(currentlyloggedinuser().getId()).stream().filter(c -> !c.isOrdered()).collect(Collectors.toList());
+        mav.addObject("cartitems", list);
         mav.addObject("totalcartprice", shoppingCartService.cartTotal());
         return mav;
     }
@@ -67,10 +67,11 @@ public class ShoppingCartController {
     @GetMapping("/updateQuantity")
     public ModelAndView updateQuantity(@RequestParam(required = false) Long cartItemId, @RequestParam(required = false) int quantity) {
         ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
-        mav.getModel().put("subtotal", shoppingCartService.cartSubTotal(cartItemId));
         shoppingCartService.updateQuantity(cartItemId, quantity);
+        mav.getModel().put("subtotal", shoppingCartService.cartSubTotal(cartItemId));
         return mav;
     }
+
 
     @GetMapping("/addProductToCart")
     public ModelAndView addProductToCart(@RequestParam Long productId) {
@@ -89,11 +90,6 @@ public class ShoppingCartController {
         return mav;
     }
 
-    @GetMapping("/currentlyloggedinuser")
-    public User currentlyloggedinuser() {
-        return userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-    }
-
     @GetMapping("/orderCartItems")
     public ModelAndView orderCartItems() {
         if (currentlyloggedinuser() == null) {
@@ -106,6 +102,11 @@ public class ShoppingCartController {
     @GetMapping("/ordered")
     public ModelAndView ordered() {
         return new ModelAndView("ordered");
+    }
+
+    @GetMapping("/currentlyloggedinuser")
+    public User currentlyloggedinuser() {
+        return userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
