@@ -8,7 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository  extends CrudRepository<Product, Long> {
-    public List<Product> findAll();
+     List<Product> findAll();
     @Query(value = "SELECT * FROM products Where product_name=?1 ", nativeQuery = true)
     Product findByProductName(String name);
+    Boolean existsByProductName(String productName);
 }

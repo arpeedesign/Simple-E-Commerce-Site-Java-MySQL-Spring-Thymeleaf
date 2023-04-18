@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.nio.MappedByteBuffer;
 import java.util.List;
 
 @NoArgsConstructor
@@ -25,36 +24,27 @@ public class Order {
     private List<CartItem> cartItem;
 
     private double orderedCartTotalValue;
-
-
     public long getOrderId() {
         return orderId;
     }
-
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
-
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
-
     public List<CartItem> getCartItem() {
         return cartItem;
     }
-
     public void setCartItem(List<CartItem> cartItem) {
         this.cartItem = cartItem;
     }
-
     public double getOrderedCartTotalValue() {
         return orderedCartTotalValue;
     }
-
     public void setOrderedCartTotalValue(double orderedCartTotalValue) {
         this.orderedCartTotalValue = orderedCartTotalValue;
     }

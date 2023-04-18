@@ -54,7 +54,7 @@ public class UserController {
         return userService.confirmEmail(confirmationToken);
     }
     @GetMapping("/user/")
-    public ModelAndView registrationForm() {
-        return new ModelAndView("user");
+    public ModelAndView user() {
+        return new ModelAndView("redirect:/user");
     }
 }

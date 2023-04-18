@@ -48,15 +48,4 @@ public class Customer {
     @Column(name = "reset_password_token", nullable = false, length = 40)
     private String costumerResetPasswordToken;
 
-/*    public Customer getCurrentlyLoggedInCustomer(Authentication authentication) {
-    Customer customer=null;
-    Object principal = authentication.getPrincipal();
-    if (principal instanceof CustomerUserDetails){
-        cutomer = ((CustomerDetails) principal).getCustomer();
-    } else if ( principal instanceof CustomOAuth2User) {
-        String email= ((CustomOAuth2User)principal).getEmail();
-        customer = getCustomerByEmail(email);
-    }
-    return customer;
-    }*/
 }

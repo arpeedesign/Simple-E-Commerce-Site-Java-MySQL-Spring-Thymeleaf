@@ -12,5 +12,5 @@ public interface ProductService {
     Product findID(Long productId);
 
     void deleteProduct(Long productId);
-    void createFirstProducts(String name);
+    void createFirstProducts();
 }

@@ -18,12 +18,15 @@ public class Controller {
 
     @GetMapping({"/home", "", "/"})
     public ModelAndView home() {
+        userService.createAdmin();
+        userService.createFirstUser();
+        productService.createFirstProducts();
         return new ModelAndView("home");
     }
 
     @PostConstruct
     private void postConstruct() {
-        userService.createAdmin();
+        //userService.createAdmin();
         //userService.createFirstUser();
     }
 

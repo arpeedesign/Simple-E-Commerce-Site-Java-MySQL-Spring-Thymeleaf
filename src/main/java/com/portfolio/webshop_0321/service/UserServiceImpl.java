@@ -96,36 +96,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createAdmin() {
-        User admin = new User();
-        admin.setUserEmail("admin2@admin.com");
-        admin.setUserFirstName("admin");
-        admin.setUserLastName("admin");
-        admin.setUserGender("X");
-        admin.setUserPassword(passwordEncoder.encode("Password"));
-        admin.setEnabled(true);
-        Role role = roleRepository.findByName(TbConstants.Roles.ADMIN);
-        if (role == null) {
-            role = roleRepository.save(new Role(TbConstants.Roles.ADMIN));
+        if (Boolean.FALSE.equals(userRepository.existsByUserEmail("admin@admin.com"))) {
+            User admin = new User();
+            admin.setUserEmail("admin@admin.com");
+            admin.setUserFirstName("admin");
+            admin.setUserLastName("admin");
+            admin.setUserGender("X");
+            admin.setUserPassword(passwordEncoder.encode("Password"));
+            admin.setEnabled(true);
+            admin.setRoles(Arrays.asList(roleRepository.findByName(TbConstants.Roles.ADMIN)));
+            userRepository.save(admin);
         }
-        admin.setRoles(Arrays.asList(role));
-        userRepository.save(admin);
-
     }
 
     @Override
     public void createFirstUser() {
-        //if(userRepository.findByUserEmail("user@user.com").getUserEmail().isBlank())
-        User user = new User();
-        user.setUserEmail("user@user.com");
-        user.setUserFirstName("user");
-        user.setUserLastName("user");
-        user.setUserGender("X");
-        user.setUserPassword(passwordEncoder.encode("Password"));
-        user.setEnabled(true);
-        Role role = roleRepository.save(new Role(TbConstants.Roles.USER));
-        user.setRoles(Arrays.asList(role));
-        userRepository.save(user);
-
+        if (Boolean.FALSE.equals(userRepository.existsByUserEmail("user@user.com"))) {
+            User user = new User();
+            user.setUserEmail("user@user.com");
+            user.setUserFirstName("John");
+            user.setUserLastName("Doe");
+            user.setUserGender("M");
+            user.setUserPassword(passwordEncoder.encode("Password"));
+            user.setEnabled(true);
+            user.setRoles(Arrays.asList(roleRepository.findByName(TbConstants.Roles.USER)));
+            userRepository.save(user);
+        }
     }
 
 }
