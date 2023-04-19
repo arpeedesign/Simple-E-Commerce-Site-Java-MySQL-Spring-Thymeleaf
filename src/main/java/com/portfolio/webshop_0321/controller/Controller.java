@@ -29,7 +29,7 @@ public class Controller {
         productService.createFirstProducts();
         return new ModelAndView("home");
     }
-    @ModelAttribute("loggedinuser")
+/*    @ModelAttribute("loggedinuser")
     public ModelAndView globalUserObject() {
         ModelAndView mav = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -45,8 +45,11 @@ public class Controller {
         mav.getModel().put("userFirstName", user.getUserFirstName());
         System.out.println("globalUserObject called");
         return mav;
+    }*/
+    @GetMapping("/profile")
+    public ModelAndView profile() {
+        return new ModelAndView("profile");
     }
-
 
     @PostConstruct
     private void postConstruct() {

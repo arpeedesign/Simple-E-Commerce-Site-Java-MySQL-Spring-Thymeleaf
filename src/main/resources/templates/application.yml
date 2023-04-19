@@ -7,9 +7,9 @@ spring:
   ddl-auto: update
   # MySql
   datasource:
-    url: jdbc:mysql://localhost/spring-security-form-login
+    url: jdbc:mysql://localhost/webshop
     username: root
-    password: root
+    password: EgyKetto12
     # Connection Pool
     hikari:
       connection-timeout: 20000

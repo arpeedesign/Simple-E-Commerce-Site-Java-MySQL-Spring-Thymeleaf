@@ -30,8 +30,8 @@ public class SpringSecurity {
                         .requestMatchers("/confirm-account**").permitAll()
                         .requestMatchers("/**").permitAll()
                         .requestMatchers("/addProductToCart**").authenticated()
-                        //.requestMatchers("/dashboard").hasAnyRole("ADMIN")
-                        //.anyRequest().permitAll()
+                        .anyRequest().authenticated()
+
 /*                        .requestMatchers("/**").permitAll()
                         .requestMatchers("**").permitAll()
                         .requestMatchers("/home**").permitAll()
