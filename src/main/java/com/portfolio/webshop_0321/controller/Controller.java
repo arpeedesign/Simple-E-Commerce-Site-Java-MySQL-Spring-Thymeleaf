@@ -1,13 +1,16 @@
 package com.portfolio.webshop_0321.controller;
 
+import com.portfolio.webshop_0321.dto.UserDto;
 import com.portfolio.webshop_0321.entity.User;
 import com.portfolio.webshop_0321.service.ProductService;
 import com.portfolio.webshop_0321.service.UserService;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,32 +32,31 @@ public class Controller {
         productService.createFirstProducts();
         return new ModelAndView("home");
     }
-/*    @ModelAttribute("loggedinuser")
-    public ModelAndView globalUserObject() {
+
+    @GetMapping
+    public ModelAndView currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
         ModelAndView mav = new ModelAndView();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            mav.getModel().put("userFirstName", "Nobody");
-            return mav;
-        }
-        User user = userService.findUserByEmail(authentication.getName());
-        if (user == null) {
-            mav.getModel().put("userFirstName", "Unknown");
-            return mav;
-        }
-        mav.getModel().put("userFirstName", user.getUserFirstName());
-        System.out.println("globalUserObject called");
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String email = loggedInUser.getName();
+        User user = userService.findUserByEmail(email);
+        String userFirstName = user.getUserFirstName();
+        mav.getModel().put("firstName", userFirstName);
+        mav.getModel().put("emailAddress", email);
+        mav.getModel().put("userRole",user.getRoles());
         return mav;
-    }*/
-    @GetMapping("/profile")
-    public ModelAndView profile() {
-        return new ModelAndView("profile");
     }
 
-    @PostConstruct
-    private void postConstruct() {
-        //userService.createAdmin();
-        //userService.createFirstUser();
+    @GetMapping("/profile")
+    public ModelAndView profile() {
+        ModelAndView mav = new ModelAndView("profile");
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String email = loggedInUser.getName();
+        User user = userService.findUserByEmail(email);
+        String userFirstName = user.getUserFirstName();
+        mav.getModel().put("firstName", userFirstName);
+        mav.getModel().put("emailAddress", email);
+        mav.getModel().put("userRole",user.getRoles());
+        return mav;
     }
 
 }

@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-    public ResponseEntity<?> confirmUserAccount(@RequestParam("token")String confirmationToken) {
+    public ModelAndView confirmUserAccount(@RequestParam("token")String confirmationToken) {
         return userService.confirmEmail(confirmationToken);
     }
     @GetMapping("/user/")

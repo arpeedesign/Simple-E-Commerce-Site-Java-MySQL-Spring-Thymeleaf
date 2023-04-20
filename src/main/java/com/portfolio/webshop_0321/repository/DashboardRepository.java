@@ -1,6 +1,7 @@
 package com.portfolio.webshop_0321.repository;
 
 import com.portfolio.webshop_0321.entity.DashboardData;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface DashboardRepository extends CrudRepository<DashboardData, Long> {
+public interface DashboardRepository extends JpaRepository<DashboardData, Long> {
 
     @Query("SELECT u FROM DashboardData u")
     List<DashboardData> findAllDashboardData();

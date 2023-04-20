@@ -1,4 +1,4 @@
-package com.portfolio.webshop_0321.entity;
+package com.portfolio.webshop_0321.util;
 
 public class TbConstants {
     public static interface Roles {

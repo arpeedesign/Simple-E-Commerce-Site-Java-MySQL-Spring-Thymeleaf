@@ -2,9 +2,7 @@ package com.portfolio.webshop_0321.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +28,7 @@ public class User implements Serializable {
     private String userGender;
     @Column(name = "is_enabled")
     private Boolean isEnabled;
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
-    }
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -48,7 +44,6 @@ public class User implements Serializable {
         this.userGender = gender;
         this.roles = roles;
     }
-
     public long getId() {
         return id;
     }
@@ -99,6 +94,10 @@ public class User implements Serializable {
 
     public Boolean getEnabled() {
         return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
     public void setEnabled(Boolean enabled) {

@@ -1,13 +1,10 @@
 package com.portfolio.webshop_0321.service;
 
 import com.portfolio.webshop_0321.entity.Product;
-import com.portfolio.webshop_0321.entity.TbConstants;
-import com.portfolio.webshop_0321.entity.User;
 import com.portfolio.webshop_0321.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service

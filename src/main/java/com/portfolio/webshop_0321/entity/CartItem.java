@@ -1,5 +1,6 @@
 package com.portfolio.webshop_0321.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class CartItem implements Serializable {
     private int quantity;
     private double subTotal;
     private boolean ordered;
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="order_id", referencedColumnName = "orderId")
     private Order order;

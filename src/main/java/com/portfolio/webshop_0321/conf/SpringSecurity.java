@@ -31,11 +31,6 @@ public class SpringSecurity {
                         .requestMatchers("/**").permitAll()
                         .requestMatchers("/addProductToCart**").authenticated()
                         .anyRequest().authenticated()
-
-/*                        .requestMatchers("/**").permitAll()
-                        .requestMatchers("**").permitAll()
-                        .requestMatchers("/home**").permitAll()
-                        .anyRequest().authenticated()*/
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

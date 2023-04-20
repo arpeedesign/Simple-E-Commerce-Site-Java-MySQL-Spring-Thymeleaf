@@ -6,11 +6,13 @@ import com.portfolio.webshop_0321.repository.ConfirmationTokenRepository;
 import com.portfolio.webshop_0321.repository.OrderRepository;
 import com.portfolio.webshop_0321.repository.RoleRepository;
 import com.portfolio.webshop_0321.repository.UserRepository;
+import com.portfolio.webshop_0321.util.TbConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -74,7 +76,7 @@ public class UserServiceImpl implements UserService {
         confirmationTokenRepository.save(confirmationToken);
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(user.getUserEmail());
-        mailMessage.setSubject("Complete Registration!");
+        mailMessage.setSubject("Complete Your Registration at RP's Shop!");
         mailMessage.setText("To confirm your account, please click here : "
                 + "http://localhost:8082/confirm-account?token=" + confirmationToken.getConfirmationToken());
         emailService.sendEmail(mailMessage);
@@ -83,15 +85,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<?> confirmEmail(String confirmationToken) {
+    public ModelAndView confirmEmail(String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+        ModelAndView mav = new ModelAndView();
         if (token != null) {
             User user = userRepository.findByUserEmailIgnoreCase(token.getUserEntity().getUserEmail());
             user.setEnabled(true);
             userRepository.save(user);
-            return ResponseEntity.ok("Email verified successfully!");
+            return new ModelAndView("email-verification-ok");
         }
-        return ResponseEntity.badRequest().body("Error: Couldn't verify email");
+        return new ModelAndView("email-verification-nok");
     }
 
     @Override
@@ -104,7 +107,7 @@ public class UserServiceImpl implements UserService {
             admin.setUserGender("X");
             admin.setUserPassword(passwordEncoder.encode("Password"));
             admin.setEnabled(true);
-            admin.setRoles(Arrays.asList(roleRepository.findByName(TbConstants.Roles.ADMIN)));
+            admin.setRoles(Arrays.asList(roleRepository.save(new Role(TbConstants.Roles.ADMIN))));
             userRepository.save(admin);
         }
     }
@@ -119,7 +122,7 @@ public class UserServiceImpl implements UserService {
             user.setUserGender("M");
             user.setUserPassword(passwordEncoder.encode("Password"));
             user.setEnabled(true);
-            user.setRoles(Arrays.asList(roleRepository.findByName(TbConstants.Roles.USER)));
+            user.setRoles(Arrays.asList(roleRepository.save(new Role(TbConstants.Roles.USER))));
             userRepository.save(user);
         }
     }

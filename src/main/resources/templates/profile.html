@@ -15,18 +15,20 @@
 <body>
 <div th:replace="fragments :: header"> Header placeholder</div>
 
-<ul>
-    <li sec:authorize="isAnonymous()"><a class="nav-link" href="/login">Login</a></li>
-    <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/logout">Logout</a></li>
-    <li sec:authorize="isAuthenticated()">Wellcome, <span sec:authentication="name"></span></li>
-</ul>
-<p th:text="'Hello ' + ${userFirstName}">First Name</p>
-<div class="mt-2">Username: <span sec:authentication="principal.username"/></div>
+<li sec:authorize="isAuthenticated()">Wellcome, <span sec:authentication="name"></span></li>
 
+<p>Welcome, <span th:text="${#authentication.principal}"></span>!</p>
+
+
+<span>[[${#request.remoteUser}]]</span>
+
+<div class="mt-2">Username: <span sec:authentication="principal.username"/></div>
 <div class="mt-2"> Roles: <span sec:authentication="principal.authorities"/></div>
+
 <div sec:authorize="hasRole('ROLE_USER')">Text visible to user.</div>
 <div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
 <div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
+
 Authenticated username:
 <div sec:authentication="name"></div>
 Authenticated user roles:
