@@ -14,26 +14,21 @@
 </head>
 <body>
 <div th:replace="fragments :: header"> Header placeholder</div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 mx-auto">
+            <h1>User Details</h1>
+            <div class="mt-2">Username: <span sec:authentication="principal.username"/></div>
+            <div class="mt-2"> Roles: <span sec:authentication="principal.authorities"/></div>
 
-<li sec:authorize="isAuthenticated()">Wellcome, <span sec:authentication="name"></span></li>
-
-<p>Welcome, <span th:text="${#authentication.principal}"></span>!</p>
-
-
-<span>[[${#request.remoteUser}]]</span>
-
-<div class="mt-2">Username: <span sec:authentication="principal.username"/></div>
-<div class="mt-2"> Roles: <span sec:authentication="principal.authorities"/></div>
-
-<div sec:authorize="hasRole('ROLE_USER')">Text visible to user.</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
-<div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
-
-Authenticated username:
-<div sec:authentication="name"></div>
-Authenticated user roles:
-<div sec:authentication="principal.authorities"></div>
-
+            Authenticated username:
+            <div sec:authentication="name"></div>
+            Authenticated user roles:
+            <div sec:authentication="principal.authorities"></div>
+            <div class="mt-5"><a class="link-primary" th:href="@{/logout}">Logout</a></div>
+        </div>
+    </div>
+</div>
 <div th:replace="fragments :: footer">Footer placeholder</div>
 
 <script crossorigin="anonymous"

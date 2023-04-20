@@ -27,6 +27,12 @@ public class SpringSecurity {
                         .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/dashboard**").hasAnyRole("ADMIN")
+                        .requestMatchers("/list**").hasAnyRole("ADMIN")
+                        .requestMatchers("/addProductForm**").hasAnyRole("ADMIN")
+                        .requestMatchers("/addBulkProductForm**").hasAnyRole("ADMIN")
+                        .requestMatchers("/userlist**").hasAnyRole("ADMIN")
+                        .requestMatchers("/addUserForm**").hasAnyRole("ADMIN")
                         .requestMatchers("/confirm-account**").permitAll()
                         .requestMatchers("/**").permitAll()
                         .requestMatchers("/addProductToCart**").authenticated()
@@ -39,7 +45,7 @@ public class SpringSecurity {
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())
-                .exceptionHandling().accessDeniedPage("/access-denied");
+                .exceptionHandling().accessDeniedPage("/home");
         return http.build();
     }
 }
