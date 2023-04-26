@@ -1,21 +1,15 @@
 package com.portfolio.webshop_0321.controller;
-
 import com.portfolio.webshop_0321.entity.CartItem;
 import com.portfolio.webshop_0321.entity.Product;
 import com.portfolio.webshop_0321.entity.User;
 import com.portfolio.webshop_0321.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +17,6 @@ import java.util.stream.Collectors;
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
-    @Autowired
-    private CustomerService customerService;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -86,8 +78,7 @@ public class ShoppingCartController {
     @GetMapping("/removeProductFromCart")
     public ModelAndView removeProductFromCart(Long id) {
         shoppingCartService.removeProduct(id);
-        ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
-        return mav;
+        return new ModelAndView("redirect:/shopping-cart");
     }
 
     @GetMapping("/orderCartItems")
@@ -122,8 +113,6 @@ public class ShoppingCartController {
 
     @GetMapping("/cancelOrderedCartItems")
     public ModelAndView cancelOrderedCartItems(@RequestParam(required = false) Long orderId) {
-        //orderService.cancelOrderedCartItems(orderId);
-        ModelAndView mav = new ModelAndView("redirect:/shopping-cart");
-        return mav;
+        return new ModelAndView("redirect:/shopping-cart");
     }
 }

@@ -27,7 +27,6 @@ public class DashboardController {
     @Autowired
     OrderService orderService;
 
-
     @PostMapping("/saveDashboardData")
     public ModelAndView saveProduct(DashboardData dashboardData) {
         ModelAndView mav = new ModelAndView("add-dashboardData-form");

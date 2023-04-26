@@ -3,7 +3,6 @@ package com.portfolio.webshop_0321.service;
 import com.portfolio.webshop_0321.dto.UserDto;
 import com.portfolio.webshop_0321.entity.*;
 import com.portfolio.webshop_0321.repository.ConfirmationTokenRepository;
-import com.portfolio.webshop_0321.repository.OrderRepository;
 import com.portfolio.webshop_0321.repository.RoleRepository;
 import com.portfolio.webshop_0321.repository.UserRepository;
 import com.portfolio.webshop_0321.util.TbConstants;
@@ -29,9 +28,6 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    OrderRepository orderRepository;
-    private User user;
 
     @Override
     public User findUserByEmail(String email) {
@@ -68,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> saveUser(User user) {
-        if (userRepository.existsByUserEmail(user.getUserEmail())) {
+        if (Boolean.TRUE.equals(userRepository.existsByUserEmail(user.getUserEmail()))) {
             return ResponseEntity.badRequest().body("Error: Email is already in use!");
         }
         userRepository.save(user);
@@ -80,14 +76,12 @@ public class UserServiceImpl implements UserService {
         mailMessage.setText("To confirm your account, please click here : "
                 + "http://localhost:8082/confirm-account?token=" + confirmationToken.getConfirmationToken());
         emailService.sendEmail(mailMessage);
-        System.out.println("Confirmation Token: " + confirmationToken.getConfirmationToken());
         return ResponseEntity.ok("Verify email by the link sent on your email address");
     }
 
     @Override
     public ModelAndView confirmEmail(String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
-        ModelAndView mav = new ModelAndView();
         if (token != null) {
             User user = userRepository.findByUserEmailIgnoreCase(token.getUserEntity().getUserEmail());
             user.setEnabled(true);

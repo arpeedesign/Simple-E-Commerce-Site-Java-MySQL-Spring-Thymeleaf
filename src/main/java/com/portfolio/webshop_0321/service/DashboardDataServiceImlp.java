@@ -1,12 +1,10 @@
 package com.portfolio.webshop_0321.service;
 
-import com.portfolio.webshop_0321.entity.CartItem;
 import com.portfolio.webshop_0321.entity.DashboardData;
 import com.portfolio.webshop_0321.entity.Order;
 import com.portfolio.webshop_0321.repository.DashboardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -30,7 +28,6 @@ public class DashboardDataServiceImlp implements DashboardDataService {
         return dashboardRepository.findAllDashboardData();
     }
 
-    // Total Sale
     @Override
     public int lifeTimeSales() {
         if(dashboardRepository.lifeTimeSales()== null){

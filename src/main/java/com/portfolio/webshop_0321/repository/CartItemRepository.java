@@ -1,7 +1,6 @@
 package com.portfolio.webshop_0321.repository;
 
 import com.portfolio.webshop_0321.entity.CartItem;
-import com.portfolio.webshop_0321.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

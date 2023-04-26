@@ -9,7 +9,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")//SQL table name
+@Table(name = "users")
 @Entity
 public class User implements Serializable {
     @Id

@@ -1,14 +1,13 @@
 package com.portfolio.webshop_0321.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="products")//SQL table name
+@Table(name="products")
 @Entity
 public class Product implements Serializable {
     @Column(name = "product_name")

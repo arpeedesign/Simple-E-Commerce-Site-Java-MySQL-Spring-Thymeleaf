@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="dashboard_data")//SQL table name
+@Table(name="dashboard_data")
 @Entity
 public class DashboardData {
     @Id

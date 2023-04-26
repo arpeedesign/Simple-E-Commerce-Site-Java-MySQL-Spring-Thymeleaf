@@ -7,11 +7,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -35,7 +33,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     public User getCurrentUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(email);
         return userService.findUserByEmail(email);
     }
 
@@ -43,7 +40,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Long addProduct(Long productId) {
         List<CartItem> list = listCartItems(getCurrentUser().getId());
         for (CartItem i : list) {
-            if (i.getProduct().getProductId() == productId && i.isOrdered() == false) {
+            if (i.getProduct().getProductId() == productId && !i.isOrdered()) {
                 i.setQuantity(i.getQuantity() + 1);
                 cartItemRepository.save(i);
                 return i.getId();

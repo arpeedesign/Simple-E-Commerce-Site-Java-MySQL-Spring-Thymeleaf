@@ -19,38 +19,20 @@ repositories {
 
 dependencies {
 
-	// api 'org.springframework.boot:spring-boot-starter-actuator:3.0.2'
-	// api 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.2'
-	// api 'org.springframework.boot:spring-boot-starter-security:3.0.2'
-	// api 'org.springframework.boot:spring-boot-starter-thymeleaf:3.0.2'
-	// api 'org.springframework.boot:spring-boot-starter-validation:3.0.2'
-	// api 'org.springframework.boot:spring-boot-starter-web:3.0.2'
-	//api 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
-	//api 'org.projectlombok:lombok:1.18.24'
-	//runtimeOnly 'org.springframework.boot:spring-boot-devtools:3.0.2'
-	//runtimeOnly 'com.mysql:mysql-connector-j:8.0.32'
-	//testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.2'
-	//testImplementation 'org.springframework.security:spring-security-test:6.0.1'
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.2'//OK
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.0.2'//OK
 	implementation 'org.springframework.boot:spring-boot-starter-web:3.0.2'//OK
 	implementation 'org.apache.poi:poi-ooxml:5.0.0'
-
-	//implementation 'org.springframework.security:spring-security-core:6.0.2'
-	//implementation 'org.springframework.security:spring-security-core:5.1.13.RELEASE'
-
 	implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.2'//OK
 	implementation 'org.springframework.boot:spring-boot-starter-security:3.0.2' //OK
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.2' //OK
 	implementation 'org.springframework.boot:spring-boot-devtools:3.0.2'//OK
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'//OK itt 6-os van
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+	testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+	testImplementation 'org.mockito:mockito-core:4.11.0'//OK itt 6-os van
 
-	//implementation 'io.springfox:springfox-swagger2:3.0.0'
-	//implementation 'io.springfox:springfox-boot-starter:3.0.0'
-	//implementation 'io.springfox:springfox-core:3.0.0'
-	//implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
 	compileOnly 'org.projectlombok:lombok:1.18.24' //ok
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -59,6 +41,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.2'
 	testImplementation 'org.springframework.security:spring-security-test:6.0.1'
+	testImplementation 'org.mockito:mockito-all:1.10.19'
 }
 
 tasks.named('test') {
